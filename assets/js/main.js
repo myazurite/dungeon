@@ -628,7 +628,7 @@ const allocationPopup = () => {
                 </select>
             </div>
             <div class="row primary-panel pad">
-                <p id="skill-desc">Attacks deal extra 8% of enemies' current health on hit.</p>
+                <p id="skill-desc">Attacks deal extra 12% of enemies' current health on hit.</p>
             </div>
             <button id="allocate-confirm">Confirm</button>
         </div>`;

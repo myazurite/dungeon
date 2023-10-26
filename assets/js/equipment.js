@@ -36,12 +36,12 @@ const createEquipment = () => {
 
     // Generate random equipment rarity
     const rarityChances = {
-        "Common": 0.6,
+        "Common": 0.4,
         "Uncommon": 0.3,
-        "Rare": 0.04,
-        "Epic": 0.03,
-        "Legendary": 0.02,
-        "Heirloom": 0.01
+        "Rare": 0.1,
+        "Epic": 0.09,
+        "Legendary": 0.06,
+        "Heirloom": 0.05
     };
 
     const randomNumber = Math.random();
