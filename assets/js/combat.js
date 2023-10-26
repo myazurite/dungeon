@@ -121,6 +121,7 @@ const playerAttack = () => {
     if (player.skills.includes("Blade Dance")) {
         // Gain increased attack speed and crit damage after each hit. Stack resets after battle
         player.baseStats.atkSpd += 0.05;
+        player.tempStats.critDmg += 10;
         objectValidation();
         player.tempStats.atkSpd += 0.05;
         player.tempStats.critDmg += 10;
@@ -309,7 +310,9 @@ const endCombat = () => {
         // Remove Blade Dance attack speed buff
         objectValidation();
         player.baseStats.atkSpd -= player.tempStats.atkSpd;
+        player.baseStats.critDmg -= player.tempStats.critDmg;
         player.tempStats.atkSpd = 0;
+        player.tempStats.critDmg = 0;
         saveData();
     }
 
