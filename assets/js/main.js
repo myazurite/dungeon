@@ -158,6 +158,9 @@ window.addEventListener("load", function () {
                 <p id="close-menu"><i class="fa fa-xmark"></i></p>
             </div>
             <button id="player-menu"><i class="fas fa-user"></i>${player.name}</button>
+            <button id="change-name">Change Name</button>
+            <input type="text" id="new-name">
+            <button id="submit-name-change">Submit</button>
             <button id="stats">Current Run</button>
             <button id="volume-btn">Volume Settings</button>
             <button id="export-import">Export/Import Data</button>
@@ -170,6 +173,9 @@ window.addEventListener("load", function () {
         let quitRun = document.querySelector('#quit-run');
         let exportImport = document.querySelector('#export-import');
         let volumeSettings = document.querySelector('#volume-btn');
+        let nameChangeOpener = document.querySelector('#change-name');
+        let newName = document.querySelector('#new-name');
+        let newNameButton = document.querySelector('#submit-name-change');
 
         // Player profile click function
         playerMenu.onclick = function () {
@@ -198,6 +204,23 @@ window.addEventListener("load", function () {
                 menuModalElement.style.display = "flex";
             };
         };
+
+        //Change player name
+        newName.style.display = 'none';
+        newName.style.marginTop = '-10px';
+        newNameButton.style.display = 'none';
+        newNameButton.style.marginTop = '-10px';
+        nameChangeOpener.onclick = function () {
+            sfxOpen.play();
+            newName.style.display = 'unset';
+            newNameButton.style.display = 'unset';
+        }
+        newNameButton.onclick = function () {
+            player.name = newName.value;
+            alert('Success');
+            newName.style.display = 'none';
+            newNameButton.style.display = 'none';
+        }
 
         // Dungeon run click function
         runMenu.onclick = function () {
