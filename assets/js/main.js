@@ -621,6 +621,7 @@ const allocationPopup = () => {
                     <option value="Remnant Razor">Remnant Razor</option>
                     <option value="Titan's Will">Titan's Will</option>
                     <option value="Devastator">Devastator</option>
+                    <option value="Rampager">Rampager</option>
                     <option value="Blade Dance">Blade Dance</option>
                     <option value="Paladin's Heart">Paladin's Heart</option>
                     <option value="Aegis Thorns">Aegis Thorns</option>
@@ -700,25 +701,25 @@ const allocationPopup = () => {
     }
     selectSkill.onchange = function () {
         if (selectSkill.value == "Remnant Razor") {
-            skillDesc.innerHTML = "Attacks deal extra 8% of enemies' current health on hit.";
+            skillDesc.innerHTML = "Attacks deal extra 12% of enemies' current health on hit.";
         }
         if (selectSkill.value == "Titan's Will") {
-            skillDesc.innerHTML = "Attacks deal extra 5% of your maximum health on hit.";
+            skillDesc.innerHTML = "Attacks deal extra 8% of your maximum health on hit.";
         }
         if (selectSkill.value == "Devastator") {
-            skillDesc.innerHTML = "Deal 30% more damage but you lose 30% base attack speed.";
+            skillDesc.innerHTML = "Deal 40% more damage but you lose 30% base attack speed.";
         }
         if (selectSkill.value == "Rampager") {
-            skillDesc.innerHTML = "Increase attack by 5 after each hit. Stack resets after battle.";
+            skillDesc.innerHTML = "Increase attack by 20 after each hit. Stack resets after battle.";
         }
         if (selectSkill.value == "Blade Dance") {
-            skillDesc.innerHTML = "Gain increased attack speed after each hit. Stack resets after battle.";
+            skillDesc.innerHTML = "Gain increased attack speed and 10% crit damage after each hit. Stack resets after battle.";
         }
         if (selectSkill.value == "Paladin's Heart") {
-            skillDesc.innerHTML = "You receive 25% less damage permanently.";
+            skillDesc.innerHTML = "You receive 30% less damage permanently.";
         }
         if (selectSkill.value == "Aegis Thorns") {
-            skillDesc.innerHTML = "Enemies receive 15% of the damage they dealt.";
+            skillDesc.innerHTML = "Enemies receive 30% of the damage they dealt.";
         }
     }
 

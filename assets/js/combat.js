@@ -100,29 +100,31 @@ const playerAttack = () => {
     // Skill effects
     objectValidation();
     if (player.skills.includes("Remnant Razor")) {
-        // Attacks deal extra 8% of enemies' current health on hit
-        damage += Math.round((8 * enemy.stats.hp) / 100);
+        // Attacks deal extra 12% of enemies' current health on hit || old: 8
+        damage += Math.round((12 * enemy.stats.hp) / 100);
     }
     if (player.skills.includes("Titan's Will")) {
-        // Attacks deal extra 5% of your maximum health on hit
-        damage += Math.round((5 * player.stats.hpMax) / 100);
+        // Attacks deal extra 8% of your maximum health on hit || old: 5%
+        damage += Math.round((8 * player.stats.hpMax) / 100);
     }
     if (player.skills.includes("Devastator")) {
-        // Deal 30% more damage but you lose 30% base attack speed
-        damage = Math.round(damage + ((30 * damage) / 100));
+        // Deal 40% more damage but you lose 30% base attack speed
+        damage = Math.round(damage + ((40 * damage) / 100));
     }
     if (player.skills.includes("Rampager")) {
-        // Increase base attack by 5 after each hit. Stack resets after battle.
-        player.baseStats.atk += 5;
+        // Increase base attack by 20 after each hit. Stack resets after battle. || old: 5
+        player.baseStats.atk += 20;
         objectValidation();
-        player.tempStats.atk += 5;
+        player.tempStats.atk += 20;
         saveData();
     }
     if (player.skills.includes("Blade Dance")) {
-        // Gain increased attack speed after each hit. Stack resets after battle
+        // Gain increased attack speed and crit damage after each hit. Stack resets after battle
         player.baseStats.atkSpd += 0.05;
+        player.baseStats.critDmg += 10;
         objectValidation();
         player.tempStats.atkSpd += 0.05;
+        player.tempStats.critDmg += 10;
         saveData();
     }
 
@@ -194,8 +196,8 @@ const enemyAttack = () => {
 
     // Skill effects
     if (player.skills.includes("Paladin's Heart")) {
-        // You receive 25% less damage
-        damage = Math.round(damage - ((25 * damage) / 100));
+        // You receive 30% less damage || old: 25%
+        damage = Math.round(damage - ((30 * damage) / 100));
     }
 
     // Apply the calculations
@@ -203,8 +205,8 @@ const enemyAttack = () => {
     // Aegis Thorns skill
     objectValidation();
     if (player.skills.includes("Aegis Thorns")) {
-        // Enemies receive 15% of the damage they dealt
-        enemy.stats.hp -= Math.round((15 * damage) / 100);
+        // Enemies receive 30% of the damage they dealt || old: 15%
+        enemy.stats.hp -= Math.round((30 * damage) / 100);
     }
     enemy.stats.hp += lifesteal;
     addCombatLog(`${enemy.name} dealt ` + nFormatter(damage) + ` ${dmgtype} to ${player.name}.`);

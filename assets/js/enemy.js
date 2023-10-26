@@ -40,10 +40,13 @@ const generateRandomEnemy = (condition) => {
         'Spider', 'Red Spider', 'Green Spider',
         // Skeleton
         'Skeleton Archer', 'Skeleton Swordsmaster', 'Skeleton Knight', 'Skeleton Mage', 'Skeleton Pirate', 'Skeleton Samurai', 'Skeleton Warrior',
+        //TODO Add Special event unit names here
+        'Doge of the West',
         // Bosses
         'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Cerberus Ptolemaios', 'Hellhound Inferni', 'Berthelot, the Undead King', 'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan', 'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries', 'Llyrrad, the Ant Queen', 'Clockwork Spider', 'Aragorn, the Lethal Wolf',
         // Monarch
-        'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor'
+        'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
+        //TODO Add special + event sboss here
     ];
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
     let selectedEnemies = null;
@@ -137,7 +140,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Darkness Angel Reaper', 'Naizicher, the Spider Dragon'
+                    'Darkness Angel Reaper', 'Naizicher, the Spider Dragon', 'Doge of the West'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -565,6 +568,10 @@ const setEnemyImg = () => {
             enemy.image.name = 'zalaras';
             enemy.image.size = '70%';
             break;
+        //TODO Add special enemy && event bosses
+        case 'Doge of the West':
+            enemy.image.name = 'doge_gun';
+            enemy.image.size = '60%'
     };
 }
 
