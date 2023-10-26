@@ -364,7 +364,7 @@ const goldDrop = () => {
 
 // Non choices dungeon event messages
 const nothingEvent = () => {
-    let eventRoll = randomizeNum(1, 6);
+    let eventRoll = randomizeNum(1, 11);
     if (eventRoll == 1) {
         addDungeonLog("You stumbled upon a weird scripture, just to realize it was Kyuu's horrible puns.");
     } else if (eventRoll == 2) {
@@ -377,6 +377,16 @@ const nothingEvent = () => {
         addDungeonLog("Why did the tomato turn red? Because it saw the salad dressing. -Keishi-");
     } else if (eventRoll == 6) {
         addDungeonLog("3 tomatoes are walking down a street - a poppa 🍅 , a momma 🍅  and a baby 🍅 . baby 🍅 starts lagging behind. Poppa 🍅 gets angry, goes over to the baby 🍅 and smooshes him, says  \"catch up\"");
+    } else if (eventRoll == 7) {
+        addDungeonLog("Please be patient, I have autism®");
+    } else if (eventRoll == 8) {
+        addDungeonLog("Why did the scarecrow win an award? Because he was outstanding in his field. -Keishi-(again)");
+    } else if (eventRoll == 9) {
+        addDungeonLog("\"You slipped again, YOU DONKEY.\" -Dumbledore said calmly.")
+    } else if (eventRoll == 10) {
+        addDungeonLog("What's a skeleton favorite instrument? Definitely not a trombone, don't be stupid like Kyuu.")
+    } else if (eventRoll == 11) {
+        addDungeonLog("Hey guys, did you know that in terms of...")
     }
 }
 
