@@ -364,7 +364,7 @@ const goldDrop = () => {
 
 // Non choices dungeon event messages
 const nothingEvent = () => {
-    let eventRoll = randomizeNum(1, 11);
+    let eventRoll = randomizeNum(1, 13);
     if (eventRoll == 1) {
         addDungeonLog("You stumbled upon a weird scripture, just to realize it was Kyuu's horrible puns.");
     } else if (eventRoll == 2) {
@@ -387,6 +387,10 @@ const nothingEvent = () => {
         addDungeonLog("What's a skeleton favorite instrument? Definitely not a trombone, don't be stupid like Kyuu.")
     } else if (eventRoll == 11) {
         addDungeonLog("Hey guys, did you know that in terms of...")
+    } else if (eventRoll == 12) {
+        addDungeonLog("You stumbled upon another weird yet familiar scripture, feeling disgusted you burn it with fire.")
+    } else if (eventRoll == 13) {
+        addDungeonLog("三 ᕕ( ᐛ ) ᕗ")
     }
 }
 
