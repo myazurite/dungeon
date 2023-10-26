@@ -364,17 +364,19 @@ const goldDrop = () => {
 
 // Non choices dungeon event messages
 const nothingEvent = () => {
-    let eventRoll = randomizeNum(1, 5);
+    let eventRoll = randomizeNum(1, 6);
     if (eventRoll == 1) {
-        addDungeonLog("You explored and found nothing.");
+        addDungeonLog("You stumbled upon a weird scripture, just to realize it was Kyuu's horrible puns.");
     } else if (eventRoll == 2) {
-        addDungeonLog("You found an empty chest.");
+        addDungeonLog("You found an empty chest, but not as empty as Luna's forehead.");
     } else if (eventRoll == 3) {
-        addDungeonLog("You found a monster corpse.");
+        addDungeonLog("You slipped, what an idiot.");
     } else if (eventRoll == 4) {
-        addDungeonLog("You found a corpse.");
+        addDungeonLog("You found a corpse, a horrible(?) death by snu-snu.");
     } else if (eventRoll == 5) {
-        addDungeonLog("There is nothing in this area.");
+        addDungeonLog("Why did the tomato turn red? Because it saw the salad dressing. -Keishi-");
+    } else if (eventRoll == 6) {
+        addDungeonLog("3 tomatoes are walking down a street - a poppa 🍅 , a momma 🍅  and a baby 🍅 . baby 🍅 starts lagging behind. Poppa 🍅 gets angry, goes over to the baby 🍅 and smooshes him, says  \"catch up\"");
     }
 }
 
