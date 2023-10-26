@@ -41,12 +41,11 @@ const generateRandomEnemy = (condition) => {
         // Skeleton
         'Skeleton Archer', 'Skeleton Swordsmaster', 'Skeleton Knight', 'Skeleton Mage', 'Skeleton Pirate', 'Skeleton Samurai', 'Skeleton Warrior',
         //TODO Add Special event unit names here
-        'Doge of the West',
+        'Doge of the West', 'Doge (goon)', 'Doge of the East (awakened)',
         // Bosses
         'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Cerberus Ptolemaios', 'Hellhound Inferni', 'Berthelot, the Undead King', 'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan', 'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries', 'Llyrrad, the Ant Queen', 'Clockwork Spider', 'Aragorn, the Lethal Wolf',
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
-        //TODO Add special + event sboss here
     ];
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
     let selectedEnemies = null;
@@ -75,7 +74,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Behemoth', 'Zalaras, the Dragon Emperor'
+                    'Behemoth', 'Zalaras, the Dragon Emperor', 'Doge of the East (awakened)'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -104,7 +103,7 @@ const generateRandomEnemy = (condition) => {
                 selectedEnemies = enemyNames.filter(name => [
                     'Angel Slime', 'Knight Slime', 'Crusader Slime',
                     'Green Spider',
-                    'Skeleton Knight', 'Skeleton Warrior'
+                    'Skeleton Knight', 'Skeleton Warrior', 'Doge (goon)'
                 ].includes(name));
             }
             enemy.name = selectedEnemies[Math.floor(Math.random() * selectedEnemies.length)];
@@ -571,7 +570,16 @@ const setEnemyImg = () => {
         //TODO Add special enemy && event bosses
         case 'Doge of the West':
             enemy.image.name = 'doge_gun';
-            enemy.image.size = '60%'
+            enemy.image.size = '60%';
+            break;
+        case 'Doge of the East (awakened)':
+            enemy.image.name = 'doge_katana';
+            enemy.image.size = '70%';
+            break;
+        case 'Doge (goon)':
+            enemy.image.name = 'doge_goon';
+            enemy.image.size = '70%';
+            break;
     };
 }
 
