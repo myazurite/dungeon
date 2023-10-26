@@ -117,22 +117,22 @@ const dungeonEvent = () => {
                         <button id="choice1">Enter</button>
                         <button id="choice2">Ignore</button>
                     </div>`;
-                if (dungeon.progress.room == dungeon.progress.roomLimit) {
+                if (dungeon.progress.room === dungeon.progress.roomLimit) {
                     addDungeonLog(`<span class="Heirloom">You found the door to the boss room.</span>`, choices);
                 } else {
                     addDungeonLog("You found a door.", choices);
                 }
                 document.querySelector("#choice1").onclick = function () {
                     sfxConfirm.play();
-                    if (dungeon.progress.room == dungeon.progress.roomLimit) {
+                    if (dungeon.progress.room === dungeon.progress.roomLimit) {
                         guardianBattle();
                     } else {
                         eventRoll = randomizeNum(1, 3);
-                        if (eventRoll == 1) {
+                        if (eventRoll === 1) {
                             incrementRoom();
                             mimicBattle("door");
                             addDungeonLog("You moved to the next floor.");
-                        } else if (eventRoll == 2) {
+                        } else if (eventRoll === 2) {
                             incrementRoom();
                             choices = `
                                 <div class="decision-panel">
@@ -196,7 +196,7 @@ const dungeonEvent = () => {
                 break;
             case "blessing":
                 eventRoll = randomizeNum(1, 2);
-                if (eventRoll == 1) {
+                if (eventRoll === 1) {
                     dungeon.status.event = true;
                     blessingValidation();
                     let cost = player.blessing * (500 * (player.blessing * 0.5)) + 750;
@@ -226,7 +226,7 @@ const dungeonEvent = () => {
                 break;
             case "curse":
                 eventRoll = randomizeNum(1, 3);
-                if (eventRoll == 1) {
+                if (eventRoll === 1) {
                     dungeon.status.event = true;
                     let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 10);
                     let cost = curseLvl * (10000 * (curseLvl * 0.5)) + 5000;
@@ -256,7 +256,7 @@ const dungeonEvent = () => {
                 break;
             case "monarch":
                 eventRoll = randomizeNum(1, 7);
-                if (eventRoll == 1) {
+                if (eventRoll === 1) {
                     dungeon.status.event = true;
                     choices = `
                             <div class="decision-panel">
@@ -317,7 +317,7 @@ const specialBossBattle = () => {
 // Flee from the monster
 const fleeBattle = () => {
     let eventRoll = randomizeNum(1, 2);
-    if (eventRoll == 1) {
+    if (eventRoll === 1) {
         sfxConfirm.play();
         addDungeonLog(`You managed to flee.`);
         player.inCombat = false;
@@ -335,16 +335,16 @@ const fleeBattle = () => {
 const chestEvent = () => {
     sfxConfirm.play();
     let eventRoll = randomizeNum(1, 4);
-    if (eventRoll == 1) {
+    if (eventRoll === 1) {
         mimicBattle("chest");
-    } else if (eventRoll == 2) {
-        if (dungeon.progress.floor == 1) {
+    } else if (eventRoll === 2) {
+        if (dungeon.progress.floor === 1) {
             goldDrop();
         } else {
             createEquipmentPrint("dungeon");
         }
         dungeon.status.event = false;
-    } else if (eventRoll == 3) {
+    } else if (eventRoll === 3) {
         goldDrop();
         dungeon.status.event = false;
     } else {
@@ -365,15 +365,15 @@ const goldDrop = () => {
 // Non choices dungeon event messages
 const nothingEvent = () => {
     let eventRoll = randomizeNum(1, 5);
-    if (eventRoll == 1) {
+    if (eventRoll === 1) {
         addDungeonLog("You explored and found nothing.");
-    } else if (eventRoll == 2) {
+    } else if (eventRoll === 2) {
         addDungeonLog("You found an empty chest.");
-    } else if (eventRoll == 3) {
+    } else if (eventRoll === 3) {
         addDungeonLog("You found a monster corpse.");
-    } else if (eventRoll == 4) {
+    } else if (eventRoll === 4) {
         addDungeonLog("You found a corpse.");
-    } else if (eventRoll == 5) {
+    } else if (eventRoll === 5) {
         addDungeonLog("There is nothing in this area.");
     }
 }
@@ -386,19 +386,19 @@ const statBlessing = () => {
     let value;
     switch (buff) {
         case "hp":
-            value = 10;
+            value = 20;
             player.bonusStats.hp += value;
             break;
         case "atk":
-            value = 8;
+            value = 10;
             player.bonusStats.atk += value;
             break;
         case "def":
-            value = 8;
+            value = 20;
             player.bonusStats.def += value;
             break;
         case "atkSpd":
-            value = 3;
+            value = 5;
             player.bonusStats.atkSpd += value;
             break;
         case "vamp":
@@ -410,7 +410,7 @@ const statBlessing = () => {
             player.bonusStats.critRate += value;
             break;
         case "critDmg":
-            value = 6;
+            value = 20;
             player.bonusStats.critDmg += value;
             break;
     }
@@ -450,7 +450,7 @@ const blessingUp = () => {
 
 // Validates whether blessing exists or not
 const blessingValidation = () => {
-    if (player.blessing == undefined) {
+    if (player.blessing === undefined) {
         player.blessing = 1;
     }
 }

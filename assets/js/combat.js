@@ -1,6 +1,11 @@
 const combatPanel = document.querySelector("#combatPanel")
 let enemyDead = false;
 let playerDead = false;
+let sfxPlayerDed;
+sfxPlayerDed = new Howl({
+    src: ['./assets/sfx/player_ded.wav'],
+    volume: volume.sfx * volume.master
+});
 
 // ========== Validation ==========
 const hpValidation = () => {
@@ -10,10 +15,11 @@ const hpValidation = () => {
         playerDead = true;
         player.deaths++;
         addCombatLog(`You died!`);
+        sfxPlayerDed.play();
+
         document.querySelector("#battleButton").addEventListener("click", function () {
             sfxConfirm.play();
             playerDead = false;
-
             // Reset all the necessary stats and return to menu
             let dimDungeon = document.querySelector('#dungeon-main');
             dimDungeon.style.filter = "brightness(100%)";

@@ -114,7 +114,7 @@ const openInventory = () => {
         let rarity = sellRarityElement.value;
 
         defaultModalElement.style.display = "flex";
-        if (rarity == "All") {
+        if (rarity === "All") {
             defaultModalElement.innerHTML = `
             <div class="content">
                 <p>Sell all of your equipment?</p>

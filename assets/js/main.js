@@ -408,7 +408,7 @@ const enterDungeon = () => {
     } else {
         bgmDungeon.play();
     }
-    if (player.stats.hp == 0) {
+    if (player.stats.hp === 0) {
         progressReset();
     }
     initialDungeonLoad();
@@ -699,25 +699,25 @@ const allocationPopup = () => {
         sfxConfirm.play();
     }
     selectSkill.onchange = function () {
-        if (selectSkill.value == "Remnant Razor") {
+        if (selectSkill.value === "Remnant Razor") {
             skillDesc.innerHTML = "Attacks deal extra 8% of enemies' current health on hit.";
         }
-        if (selectSkill.value == "Titan's Will") {
+        if (selectSkill.value === "Titan's Will") {
             skillDesc.innerHTML = "Attacks deal extra 5% of your maximum health on hit.";
         }
-        if (selectSkill.value == "Devastator") {
+        if (selectSkill.value === "Devastator") {
             skillDesc.innerHTML = "Deal 30% more damage but you lose 30% base attack speed.";
         }
-        if (selectSkill.value == "Rampager") {
+        if (selectSkill.value === "Rampager") {
             skillDesc.innerHTML = "Increase attack by 5 after each hit. Stack resets after battle.";
         }
-        if (selectSkill.value == "Blade Dance") {
+        if (selectSkill.value === "Blade Dance") {
             skillDesc.innerHTML = "Gain increased attack speed after each hit. Stack resets after battle.";
         }
-        if (selectSkill.value == "Paladin's Heart") {
+        if (selectSkill.value === "Paladin's Heart") {
             skillDesc.innerHTML = "You receive 25% less damage permanently.";
         }
-        if (selectSkill.value == "Aegis Thorns") {
+        if (selectSkill.value === "Aegis Thorns") {
             skillDesc.innerHTML = "Enemies receive 15% of the damage they dealt.";
         }
     }
@@ -741,26 +741,26 @@ const allocationPopup = () => {
 
         // Set player skill
         objectValidation();
-        if (selectSkill.value == "Remnant Razor") {
+        if (selectSkill.value === "Remnant Razor") {
             player.skills.push("Remnant Razor");
         }
-        if (selectSkill.value == "Titan's Will") {
+        if (selectSkill.value === "Titan's Will") {
             player.skills.push("Titan's Will");
         }
-        if (selectSkill.value == "Devastator") {
+        if (selectSkill.value === "Devastator") {
             player.skills.push("Devastator");
             player.baseStats.atkSpd = player.baseStats.atkSpd - ((30 * player.baseStats.atkSpd) / 100);
         }
-        if (selectSkill.value == "Rampager") {
+        if (selectSkill.value === "Rampager") {
             player.skills.push("Rampager");
         }
-        if (selectSkill.value == "Blade Dance") {
+        if (selectSkill.value === "Blade Dance") {
             player.skills.push("Blade Dance");
         }
-        if (selectSkill.value == "Paladin's Heart") {
+        if (selectSkill.value === "Paladin's Heart") {
             player.skills.push("Paladin's Heart");
         }
-        if (selectSkill.value == "Aegis Thorns") {
+        if (selectSkill.value === "Aegis Thorns") {
             player.skills.push("Aegis Thorns");
         }
 
@@ -804,10 +804,10 @@ const allocationPopup = () => {
 }
 
 const objectValidation = () => {
-    if (player.skills == undefined) {
+    if (player.skills === undefined) {
         player.skills = [];
     }
-    if (player.tempStats == undefined) {
+    if (player.tempStats === undefined) {
         player.tempStats = {};
         player.tempStats.atk = 0;
         player.tempStats.atkSpd = 0;

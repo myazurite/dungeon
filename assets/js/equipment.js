@@ -15,20 +15,20 @@ const createEquipment = () => {
     equipment.attribute = equipmentAttributes[Math.floor(Math.random() * equipmentAttributes.length)];
 
     // Generate random equipment name and type based on attribute
-    if (equipment.attribute == "Damage") {
+    if (equipment.attribute === "Damage") {
         const equipmentCategories = ["Sword", "Axe", "Hammer", "Dagger", "Flail", "Scythe"];
         equipment.category = equipmentCategories[Math.floor(Math.random() * equipmentCategories.length)];
         equipment.type = "Weapon";
-    } else if (equipment.attribute == "Defense") {
+    } else if (equipment.attribute === "Defense") {
         const equipmentTypes = ["Armor", "Shield", "Helmet"];
         equipment.type = equipmentTypes[Math.floor(Math.random() * equipmentTypes.length)];
-        if (equipment.type == "Armor") {
+        if (equipment.type === "Armor") {
             const equipmentCategories = ["Plate", "Chain", "Leather"];
             equipment.category = equipmentCategories[Math.floor(Math.random() * equipmentCategories.length)];
-        } else if (equipment.type == "Shield") {
+        } else if (equipment.type === "Shield") {
             const equipmentCategories = ["Tower", "Kite", "Buckler"];
             equipment.category = equipmentCategories[Math.floor(Math.random() * equipmentCategories.length)];
-        } else if (equipment.type == "Helmet") {
+        } else if (equipment.type === "Helmet") {
             const equipmentCategories = ["Great Helm", "Horned Helm"];
             equipment.category = equipmentCategories[Math.floor(Math.random() * equipmentCategories.length)];
         }
@@ -85,17 +85,17 @@ const createEquipment = () => {
     const defenseStats = ["hp", "hp", "def", "def", "atk"];
     const dmgDefStats = ["hp", "def", "atk", "atk", "critRate", "critDmg"];
     let statTypes;
-    if (equipment.attribute == "Damage") {
-        if (equipment.category == "Axe" || equipment.category == "Scythe") {
+    if (equipment.attribute === "Damage") {
+        if (equipment.category === "Axe" || equipment.category === "Scythe") {
             statTypes = damageyStats;
-        } else if (equipment.category == "Dagger" || equipment.category == "Flail") {
+        } else if (equipment.category === "Dagger" || equipment.category === "Flail") {
             statTypes = speedyStats;
-        } else if (equipment.category == "Hammer") {
+        } else if (equipment.category === "Hammer") {
             statTypes = dmgDefStats;
         } else {
             statTypes = physicalStats;
         }
-    } else if (equipment.attribute == "Defense") {
+    } else if (equipment.attribute === "Defense") {
         statTypes = defenseStats;
     }
     let equipmentValue = 0;
@@ -117,9 +117,9 @@ const createEquipment = () => {
         }
         let statMultiplier = (enemyScaling - 1) * equipment.lvl;
         equipment.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (40 * randomizeDecimal(0.5, 1.5)) + ((40 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let atkDefScaling = (16 * randomizeDecimal(0.5, 1.5)) + ((16 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (45 * randomizeDecimal(0.5, 1.5)) + ((45 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let cdAtkSpdScaling = (5 * randomizeDecimal(0.5, 1.5)) + ((5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let crVampScaling = (2 * randomizeDecimal(0.5, 1.5)) + ((2 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
 
         // Set randomized numbers to respective stats and increment sell value
@@ -159,24 +159,24 @@ const createEquipment = () => {
         }
 
         // Cap maximum stat rolls for equipment rarities
-        if (equipment.rarity == "Common" && loopCount > 3) {
+        if (equipment.rarity === "Common" && loopCount > 3) {
             loopCount--;
-        } else if (equipment.rarity == "Uncommon" && loopCount > 4) {
+        } else if (equipment.rarity === "Uncommon" && loopCount > 4) {
             loopCount--;
-        } else if (equipment.rarity == "Rare" && loopCount > 5) {
+        } else if (equipment.rarity === "Rare" && loopCount > 5) {
             loopCount--;
-        } else if (equipment.rarity == "Epic" && loopCount > 6) {
+        } else if (equipment.rarity === "Epic" && loopCount > 6) {
             loopCount--;
-        } else if (equipment.rarity == "Legendary" && loopCount > 7) {
+        } else if (equipment.rarity === "Legendary" && loopCount > 7) {
             loopCount--;
-        } else if (equipment.rarity == "Heirloom" && loopCount > 9) {
+        } else if (equipment.rarity === "Heirloom" && loopCount > 9) {
             loopCount--;
         }
 
         // Check if stat type already exists in stats array
         let statExists = false;
         for (let j = 0; j < equipment.stats.length; j++) {
-            if (Object.keys(equipment.stats[j])[0] == statType) {
+            if (Object.keys(equipment.stats[j])[0] === statType) {
                 statExists = true;
                 break;
             }
@@ -185,7 +185,7 @@ const createEquipment = () => {
         // If stat type already exists, add values together
         if (statExists) {
             for (let j = 0; j < equipment.stats.length; j++) {
-                if (Object.keys(equipment.stats[j])[0] == statType) {
+                if (Object.keys(equipment.stats[j])[0] === statType) {
                     equipment.stats[j][statType] += statValue;
                     break;
                 }
@@ -216,33 +216,33 @@ const createEquipment = () => {
 }
 
 const equipmentIcon = (equipment) => {
-    if (equipment == "Sword") {
+    if (equipment === "Sword") {
         return '<i class="ra ra-relic-blade"></i>';
-    } else if (equipment == "Axe") {
+    } else if (equipment === "Axe") {
         return '<i class="ra ra-axe"></i>';
-    } else if (equipment == "Hammer") {
+    } else if (equipment === "Hammer") {
         return '<i class="ra ra-flat-hammer"></i>';
-    } else if (equipment == "Dagger") {
+    } else if (equipment === "Dagger") {
         return '<i class="ra ra-bowie-knife"></i>';
-    } else if (equipment == "Flail") {
+    } else if (equipment === "Flail") {
         return '<i class="ra ra-chain"></i>';
-    } else if (equipment == "Scythe") {
+    } else if (equipment === "Scythe") {
         return '<i class="ra ra-scythe"></i>';
-    } else if (equipment == "Plate") {
+    } else if (equipment === "Plate") {
         return '<i class="ra ra-vest"></i>';
-    } else if (equipment == "Chain") {
+    } else if (equipment === "Chain") {
         return '<i class="ra ra-vest"></i>';
-    } else if (equipment == "Leather") {
+    } else if (equipment === "Leather") {
         return '<i class="ra ra-vest"></i>';
-    } else if (equipment == "Tower") {
+    } else if (equipment === "Tower") {
         return '<i class="ra ra-shield"></i>';
-    } else if (equipment == "Kite") {
+    } else if (equipment === "Kite") {
         return '<i class="ra ra-heavy-shield"></i>';
-    } else if (equipment == "Buckler") {
+    } else if (equipment === "Buckler") {
         return '<i class="ra ra-round-shield"></i>';
-    } else if (equipment == "Great Helm") {
+    } else if (equipment === "Great Helm") {
         return '<i class="ra ra-knight-helmet"></i>';
-    } else if (equipment == "Horned Helm") {
+    } else if (equipment === "Horned Helm") {
         return '<i class="ra ra-helmet"></i>';
     }
 }
@@ -255,7 +255,7 @@ const showItemInfo = (item, icon, type, i) => {
     let itemInfo = document.querySelector("#equipmentInfo");
     let rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     let dimContainer = document.querySelector(`#inventory`);
-    if (item.tier == undefined) {
+    if (item.tier === undefined) {
         item.tier = 1;
     }
     itemInfo.style.display = "flex";
@@ -284,7 +284,7 @@ const showItemInfo = (item, icon, type, i) => {
     // Equip/Unequip button for the item
     let unEquip = document.querySelector("#un-equip");
     unEquip.onclick = function () {
-        if (type == "Equip") {
+        if (type === "Equip") {
             // Remove the item from the inventory and add it to the equipment
             if (player.equipped.length >= 6) {
                 sfxDeny.play();
@@ -301,7 +301,7 @@ const showItemInfo = (item, icon, type, i) => {
                 saveData();
                 continueExploring();
             }
-        } else if (type == "Unequip") {
+        } else if (type === "Unequip") {
             sfxUnequip.play();
 
             // Remove the item from the equipment and add it to the inventory
@@ -337,10 +337,10 @@ const showItemInfo = (item, icon, type, i) => {
             sfxSell.play();
 
             // Sell the equipment
-            if (type == "Equip") {
+            if (type === "Equip") {
                 player.gold += item.value;
                 player.inventory.equipment.splice(i, 1);
-            } else if (type == "Unequip") {
+            } else if (type === "Unequip") {
                 player.gold += item.value;
                 player.equipped.splice(i, 1);
             }
@@ -378,7 +378,7 @@ const showInventory = () => {
     let playerInventoryList = document.getElementById("playerInventory");
     playerInventoryList.innerHTML = "";
 
-    if (player.inventory.equipment.length == 0) {
+    if (player.inventory.equipment.length === 0) {
         playerInventoryList.innerHTML = "There are no items available.";
     }
 
@@ -407,7 +407,7 @@ const showEquipment = () => {
     playerEquipmentList.innerHTML = "";
 
     // Show a message if a player has no equipment
-    if (player.equipped.length == 0) {
+    if (player.equipped.length === 0) {
         playerEquipmentList.innerHTML = "Nothing equipped.";
     }
 
@@ -466,7 +466,7 @@ const unequipAll = () => {
 }
 
 const sellAll = (rarity) => {
-    if (rarity == "All") {
+    if (rarity === "All") {
         if (player.inventory.equipment.length !== 0) {
             sfxSell.play();
             for (let i = 0; i < player.inventory.equipment.length; i++) {
@@ -525,10 +525,10 @@ const createEquipmentPrint = (condition) => {
     }).join('')}
             </ul>
         </div>`;
-    if (condition == "combat") {
+    if (condition === "combat") {
         addCombatLog(`
         ${enemy.name} dropped <span class="${item.rarity}">${item.rarity} ${item.category}</span>.<br>${panel}`);
-    } else if (condition == "dungeon") {
+    } else if (condition === "dungeon") {
         addDungeonLog(`
         You got <span class="${item.rarity}">${item.rarity} ${item.category}</span>.<br>${panel}`);
     }
