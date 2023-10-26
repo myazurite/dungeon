@@ -2,10 +2,7 @@ const combatPanel = document.querySelector("#combatPanel")
 let enemyDead = false;
 let playerDead = false;
 let sfxPlayerDed;
-sfxPlayerDed = new Howl({
-    src: ['./assets/sfx/player_ded.wav'],
-    volume: volume.sfx * volume.master
-});
+
 
 // ========== Validation ==========
 const hpValidation = () => {
@@ -15,6 +12,10 @@ const hpValidation = () => {
         playerDead = true;
         player.deaths++;
         addCombatLog(`You died!`);
+        sfxPlayerDed = new Howl({
+            src: ['./assets/sfx/player_ded.wav'],
+            volume: volume.sfx * volume.master
+        });
         sfxPlayerDed.play();
 
         document.querySelector("#battleButton").addEventListener("click", function () {
@@ -119,9 +120,9 @@ const playerAttack = () => {
     }
     if (player.skills.includes("Blade Dance")) {
         // Gain increased attack speed after each hit. Stack resets after battle
-        player.baseStats.atkSpd += 0.01;
+        player.baseStats.atkSpd += 0.05;
         objectValidation();
-        player.tempStats.atkSpd += 0.01;
+        player.tempStats.atkSpd += 0.05;
         saveData();
     }
 

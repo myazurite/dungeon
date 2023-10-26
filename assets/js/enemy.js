@@ -54,9 +54,9 @@ const generateRandomEnemy = (condition) => {
     // Calculate enemy level
     const maxLvl = dungeon.progress.floor * dungeon.settings.enemyLvlGap + (dungeon.settings.enemyBaseLvl - 1);
     const minLvl = maxLvl - (dungeon.settings.enemyLvlGap - 1);
-    if (condition === "guardian") {
+    if (condition == "guardian") {
         enemy.lvl = minLvl;
-    } else if (condition === "sboss") {
+    } else if (condition == "sboss") {
         enemy.lvl = maxLvl;
     } else {
         enemy.lvl = randomizeNum(minLvl, maxLvl);
@@ -66,11 +66,11 @@ const generateRandomEnemy = (condition) => {
     switch (enemy.type) {
         case "Offensive":
             // Select name and apply stats for Offensive enemies
-            if (condition === "guardian") {
+            if (condition == "guardian") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Berthelot, the Undead King'
                 ].includes(name));
-            } else if (condition === "sboss") {
+            } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Behemoth', 'Zalaras, the Dragon Emperor'
                 ].includes(name));
@@ -89,11 +89,11 @@ const generateRandomEnemy = (condition) => {
             break;
         case "Defensive":
             // Select name and apply stats for Defensive enemies
-            if (condition === "guardian") {
+            if (condition == "guardian") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan'
                 ].includes(name));
-            } else if (condition === "sboss") {
+            } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Ulliot, the Deathlord',
                 ].includes(name));
@@ -109,11 +109,11 @@ const generateRandomEnemy = (condition) => {
             break;
         case "Balanced":
             // Select name and apply stats for Balanced enemies
-            if (condition === "guardian") {
+            if (condition == "guardian") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries'
                 ].includes(name));
-            } else if (condition === "sboss") {
+            } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Ifrit', 'Shiva', 'Thanatos'
                 ].includes(name));
@@ -131,11 +131,11 @@ const generateRandomEnemy = (condition) => {
             break;
         case "Quick":
             // Select name and apply stats for Quick enemies
-            if (condition === "guardian") {
+            if (condition == "guardian") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Llyrrad, the Ant Queen', 'Clockwork Spider'
                 ].includes(name));
-            } else if (condition === "sboss") {
+            } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Darkness Angel Reaper', 'Naizicher, the Spider Dragon'
                 ].includes(name));
@@ -153,11 +153,11 @@ const generateRandomEnemy = (condition) => {
             break;
         case "Lethal":
             // Select name and apply stats for Lethal enemies
-            if (condition === "guardian") {
+            if (condition == "guardian") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Aragorn, the Lethal Wolf', 'Cerberus Ptolemaios', 'Hellhound Inferni'
                 ].includes(name));
-            } else if (condition === "sboss") {
+            } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Blood Manipulation Feral'
                 ].includes(name));
@@ -174,9 +174,9 @@ const generateRandomEnemy = (condition) => {
             setEnemyStats(enemy.type, condition);
             break;
     }
-    if (condition === "chest") {
+    if (condition == "chest") {
         enemy.name = "Mimic";
-    } else if (condition === "door") {
+    } else if (condition == "door") {
         enemy.name = "Door Mimic";
     }
     setEnemyImg();
@@ -184,7 +184,7 @@ const generateRandomEnemy = (condition) => {
 
 // Set a randomly generated stat for the enemy
 const setEnemyStats = (type, condition) => {
-    if (type === "Offensive") {
+    if (type == "Offensive") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(300, 370),
@@ -195,7 +195,7 @@ const setEnemyStats = (type, condition) => {
             critRate: randomizeDecimal(1, 4),
             critDmg: randomizeDecimal(6.5, 7.5)
         };
-    } else if (type === "Defensive") {
+    } else if (type == "Defensive") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(400, 500),
@@ -206,7 +206,7 @@ const setEnemyStats = (type, condition) => {
             critRate: 0,
             critDmg: 0
         };
-    } else if (type === "Balanced") {
+    } else if (type == "Balanced") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(320, 420),
@@ -217,7 +217,7 @@ const setEnemyStats = (type, condition) => {
             critRate: randomizeDecimal(0.5, 1.5),
             critDmg: randomizeDecimal(1, 3)
         };
-    } else if (type === "Quick") {
+    } else if (type == "Quick") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(300, 370),
@@ -228,7 +228,7 @@ const setEnemyStats = (type, condition) => {
             critRate: randomizeDecimal(1, 4),
             critDmg: randomizeDecimal(3, 6)
         };
-    } else if (type === "Lethal") {
+    } else if (type == "Lethal") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(300, 370),
@@ -241,7 +241,7 @@ const setEnemyStats = (type, condition) => {
         };
     }
 
-    if (dungeon.enemyMultipliers === undefined) {
+    if (dungeon.enemyMultipliers == undefined) {
         dungeon.enemyMultipliers = {
             hp: 1,
             atk: 1,
@@ -269,8 +269,8 @@ const setEnemyStats = (type, condition) => {
     }
 
     // Stat multiplier for floor guardians
-    if (condition === "guardian") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 1.7;
+    if (condition == "guardian") {
+        enemy.stats.hpMax = enemy.stats.hpMax * 1.5;
         enemy.stats.atk = enemy.stats.atk * 1.5;
         enemy.stats.def = enemy.stats.def * 1.5;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
@@ -278,7 +278,7 @@ const setEnemyStats = (type, condition) => {
     }
 
     // Stat multiplier for monarchs
-    if (condition === "sboss") {
+    if (condition == "sboss") {
         enemy.stats.hpMax = enemy.stats.hpMax * 6;
         enemy.stats.atk = enemy.stats.atk * 2;
         enemy.stats.def = enemy.stats.def * 2;
@@ -321,7 +321,7 @@ const setEnemyStats = (type, condition) => {
     }
     enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.9, 1.1)) * 1.5);
     enemy.rewards.drop = randomizeNum(1, 3);
-    if (enemy.rewards.drop === 1) {
+    if (enemy.rewards.drop == 1) {
         enemy.rewards.drop = true;
     } else {
         enemy.rewards.drop = false;
@@ -436,7 +436,7 @@ const setEnemyImg = () => {
             enemy.image.size = '50%';
             break;
         case 'Skeleton Mage':
-            if (randomizeNum(1, 2) === 1) {
+            if (randomizeNum(1, 2) == 1) {
                 enemy.image.name = 'skeleton_mage1';
             } else {
                 enemy.image.name = 'skeleton_mage2';
