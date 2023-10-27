@@ -47,7 +47,7 @@ const generateRandomEnemy = (condition) => {
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
         //Overlord
-        'Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku'
+        'Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate', 'Sky Striker Ace, Kaina',
     ];
 
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
@@ -107,7 +107,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Ulliot, the Deathlord', 'Ozma',
+                    'Ulliot, the Deathlord', 'Ozma', 'Sky Striker Ace, Kaina'
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
@@ -187,7 +187,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Sky Striker Ace, Kagari'
+                    'Sky Striker Ace, Hayate'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -631,6 +631,14 @@ const setEnemyImg = () => {
         case 'Sky Striker Ace, Shizuku':
             enemy.image.name = 'shizuku';
             enemy.image.size = '80%';
+            break;
+        case 'Sky Striker Ace, Hayate':
+            enemy.image.name = 'hayate';
+            enemy.image.size = '80%';
+            break;
+        case 'Sky Striker Ace, Kaina':
+            enemy.image.name = 'kaina';
+            enemy.image.size = '70%';
             break;
         case 'Ozma':
             enemy.image.name = 'ozma';

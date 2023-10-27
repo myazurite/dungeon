@@ -276,7 +276,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 13);
+                eventRoll = randomizeNum(1, 9);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
@@ -345,7 +345,7 @@ const overlordBossBattle = () => {
         startCombat(bgmBattleNecross);
     } else if (enemy.name == 'Sky Striker Ace, Kagari') {
         startCombat(bgmBattleKagari);
-    } else if (['Sky Striker Ace, Shizuku'].includes(enemy.name)) {
+    } else if (['Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
         startCombat(bgmBattleShizuku);
     }
     addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
