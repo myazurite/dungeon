@@ -250,7 +250,7 @@ const createRelic = () => {
     }
 
     const rarityChances = {
-        "Relic": 0.5
+        "Relic": 1
     };
 
     const randomNumber = Math.random();

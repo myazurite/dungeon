@@ -101,8 +101,8 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
-        // let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
-        let eventTypes = ["overlord","overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
+        let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
+        // let eventTypes = ["overlord","overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
         if (dungeon.action > 2 && dungeon.action < 6) {
             eventTypes.push("nextroom");
         } else if (dungeon.action > 5) {
@@ -276,7 +276,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 1);
+                eventRoll = randomizeNum(1, 13);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
@@ -344,7 +344,9 @@ const overlordBossBattle = () => {
     } else if (enemy.name == 'Necross') {
         startCombat(bgmBattleNecross);
     } else if (enemy.name == 'Sky Striker Ace, Kagari') {
-        startCombat(bgmBattleKagari)
+        startCombat(bgmBattleKagari);
+    } else if (['Sky Striker Ace, Shizuku'].includes(enemy.name)) {
+        startCombat(bgmBattleShizuku);
     }
     addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
     addDungeonLog(`An Overlord ${enemy.name} has given you a trial.`);

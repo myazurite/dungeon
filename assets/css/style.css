@@ -436,6 +436,13 @@ button:focus {
     align-items: center;
 }
 
+#enemy-sprite {
+    max-height: 200px;
+    object-fit: cover;
+    object-position: 0 0;
+    overflow: hidden;
+}
+
 #lvlupPanel .content {
     width: 100%;
     max-width: 24em;

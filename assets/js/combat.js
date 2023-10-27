@@ -39,17 +39,17 @@ const hpValidation = () => {
         enemyDead = true;
         player.kills++;
         dungeon.statistics.kills++;
-        addCombatLog(`${enemy.name} died! (${new Date(combatSeconds * 1000).toISOString().substring(14, 19)})`);
+        addCombatLog(`Defeated ${enemy.name} (${new Date(combatSeconds * 1000).toISOString().substring(14, 19)})`);
         addCombatLog(`You earned ${nFormatter(enemy.rewards.exp)} exp.`)
         playerExpGain();
         addCombatLog(`${enemy.name} dropped <i class="fas fa-coins" style="color: #FFD700;"></i>${nFormatter(enemy.rewards.gold)} gold.`)
         player.gold += enemy.rewards.gold;
         playerLoadStats();
-        if(enemy.rank == 'Overlord') {
+        if(['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku'].includes(enemy.name)) {
             if(enemy.rewards.drop) {
                 createRelicPrint("combat")
             }
-        } else if (enemy.rewards.drop && !['Bahamut', 'Necross', 'Sky Striker Ace, Kagari'].includes(enemy.name)) {
+        } else if (enemy.rewards.drop && !['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku'].includes(enemy.name)) {
             createEquipmentPrint("combat");
         }
 
@@ -297,12 +297,7 @@ const startCombat = (battleMusic) => {
 }
 
 const endCombat = () => {
-    bgmBattleMain.stop();
-    bgmBattleGuardian.stop();
-    bgmBattleBahamut.stop();
-    bgmBattleBoss.stop();
-    bgmBattleNecross.stop();
-    bgmBattleKagari.stop();
+    bgmStop();
     sfxCombatEnd.play();
     player.inCombat = false;
     // Skill validation

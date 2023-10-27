@@ -82,6 +82,12 @@ const setVolume = () => {
         loop: true
     });
 
+    bgmBattleShizuku = new Howl({
+        src: ['./assets/bgm/battle_shizuku.webm', './assets/bgm/battle_shizuku.mp3'],
+        volume: volume.bgm * volume.master,
+        loop: true
+    });
+
     // ===== SFX =====
     sfxEncounter = new Howl({
         src: ['./assets/sfx/encounter.wav'],
