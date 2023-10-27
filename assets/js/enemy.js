@@ -260,7 +260,7 @@ const setEnemyStats = (type, condition) => {
         if (["hpMax", "atk", "def"].includes(stat)) {
             enemy.stats[stat] += Math.round(enemy.stats[stat] * ((dungeon.settings.enemyScaling - 1) * enemy.lvl));
         } else if (["atkSpd"].includes(stat)) {
-            enemy.stats[stat] = 0.4;
+            enemy.stats[stat] = 0.3; //old: 0.4
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
         } else if (["critRate"].includes(stat)) {
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
@@ -289,7 +289,7 @@ const setEnemyStats = (type, condition) => {
     }
 
     // Apply stat multipliers for every stat
-    let floorMultiplier = (dungeon.progress.floor / 3);
+    let floorMultiplier = (dungeon.progress.floor / 4); //old: /3
     if (floorMultiplier < 1) {
         floorMultiplier = 1;
     }
@@ -318,10 +318,10 @@ const setEnemyStats = (type, condition) => {
 
     let expCalculation = (expYield.reduce((acc, cur) => acc + cur, 0)) / 20;
     enemy.rewards.exp = Math.round(expCalculation + expCalculation * (enemy.lvl * 0.1));
-    if (enemy.rewards.exp > 1000000) {
-        enemy.rewards.exp = 1000000 * randomizeDecimal(0.9, 1.1);
+    if (enemy.rewards.exp > 130000) {
+        enemy.rewards.exp = 130000 * randomizeDecimal(0.9, 1.1);
     }
-    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.9, 1.1)) * 1.5);
+    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.9, 1.1)) * 1.2);
     enemy.rewards.drop = randomizeNum(1, 3);
     if (enemy.rewards.drop == 1) {
         enemy.rewards.drop = true;
