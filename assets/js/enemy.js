@@ -63,7 +63,7 @@ const generateRandomEnemy = (condition) => {
     } else if (condition == "sboss") {
         enemy.lvl = maxLvl;
     } else if (condition == "overlord") {
-        enemy.lvl = maxLvl*1.2
+        enemy.lvl = maxLvl*1.5
     } else {
         enemy.lvl = randomizeNum(minLvl, maxLvl*0.8);
     }
@@ -284,7 +284,7 @@ const setEnemyStats = (type, condition) => {
         if (["hpMax", "atk", "def"].includes(stat)) {
             enemy.stats[stat] += Math.round(enemy.stats[stat] * ((dungeon.settings.enemyScaling - 1) * enemy.lvl));
         } else if (["atkSpd"].includes(stat)) {
-            enemy.stats[stat] = 0.3; //old: 0.4
+            enemy.stats[stat] = 0.25; //old: 0.4
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
         } else if (["critRate"].includes(stat)) {
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
@@ -313,14 +313,15 @@ const setEnemyStats = (type, condition) => {
     }
 
     if (condition == "overlord") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 60;
+        enemy.stats.hpMax = enemy.stats.hpMax * 500;
         enemy.stats.atk = enemy.stats.atk * 4;
         enemy.stats.def = enemy.stats.def * 12;
+        enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
     // Apply stat multipliers for every stat
-    let floorMultiplier = (dungeon.progress.floor / 3.5); //old: /3
+    let floorMultiplier = (dungeon.progress.floor / 3); //old: /3
     if (floorMultiplier < 1) {
         floorMultiplier = 1;
     }
@@ -352,7 +353,7 @@ const setEnemyStats = (type, condition) => {
     if (enemy.rewards.exp > 130000) {
         enemy.rewards.exp = 130000 * randomizeDecimal(0.9, 1.1);
     }
-    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.2, 0.4)) * 1.2);
+    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.15, 0.35)) * 1.2);
     enemy.rewards.drop = randomizeNum(1, 3);
     if (enemy.rewards.drop == 1) {
         enemy.rewards.drop = true;
