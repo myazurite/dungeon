@@ -651,7 +651,7 @@ const allocationPopup = () => {
                 </select>
             </div>
             <div class="row primary-panel pad">
-                <p id="skill-desc">Attacks deal extra 12% of enemies' current health on hit.</p>
+                <p id="skill-desc">Attacks deal extra 15% of enemies' current health on hit.</p>
             </div>
             <button id="allocate-confirm">Confirm</button>
         </div>`;
@@ -724,16 +724,16 @@ const allocationPopup = () => {
     }
     selectSkill.onchange = function () {
         if (selectSkill.value == "Remnant Razor") {
-            skillDesc.innerHTML = "Attacks deal extra 12% of enemies' current health on hit.";
+            skillDesc.innerHTML = "Attacks deal extra 15% of enemies' current health on hit.";
         }
         if (selectSkill.value == "Titan's Will") {
-            skillDesc.innerHTML = "Attacks deal extra 8% of your maximum health on hit.";
+            skillDesc.innerHTML = "Attacks deal extra 10% of your maximum health on hit.";
         }
         if (selectSkill.value == "Devastator") {
             skillDesc.innerHTML = "Deal 40% more damage but you lose 30% base attack speed.";
         }
         if (selectSkill.value == "Rampager") {
-            skillDesc.innerHTML = "Increase attack by 20 after each hit. Stack resets after battle.";
+            skillDesc.innerHTML = "Increase attack by 50 after each hit. Stack resets after battle.";
         }
         if (selectSkill.value == "Blade Dance") {
             skillDesc.innerHTML = "Gain increased attack speed and 10% crit damage after each hit. Stack resets after battle.";
@@ -742,7 +742,7 @@ const allocationPopup = () => {
             skillDesc.innerHTML = "You receive 30% less damage permanently.";
         }
         if (selectSkill.value == "Aegis Thorns") {
-            skillDesc.innerHTML = "Enemies receive 30% of the damage they dealt.";
+            skillDesc.innerHTML = "Enemies receive 150% of the damage they dealt.";
         }
     }
 
