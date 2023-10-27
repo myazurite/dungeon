@@ -36,13 +36,23 @@ const createEquipment = () => {
 
     // Generate random equipment rarity
     const rarityChances = {
-        "Common": 0.4,
+        "Common": 0.5,
         "Uncommon": 0.3,
-        "Rare": 0.1,
-        "Epic": 0.09,
-        "Legendary": 0.06,
-        "Heirloom": 0.05
+        "Rare": 0.09,
+        "Epic": 0.06,
+        "Legendary": 0.03,
+        "Heirloom": 0.02
     };
+
+    const shopRarityChances = {
+        "Epic": 0.5,
+        "Legendary": 0.3,
+        "Heirloom": 0.2
+    }
+
+    const overlordDrop = {
+        "Relic": 0.2
+    }
 
     const randomNumber = Math.random();
     let cumulativeChance = 0;

@@ -297,6 +297,7 @@ const endCombat = () => {
     bgmBattleGuardian.stop();
     bgmBattleBahamut.stop();
     bgmBattleBoss.stop();
+    bgmBattleNecross.stop();
     sfxCombatEnd.play();
     player.inCombat = false;
     // Skill validation

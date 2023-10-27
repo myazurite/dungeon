@@ -47,7 +47,7 @@ const generateRandomEnemy = (condition) => {
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
         //Overlord
-        'Bahamut',
+        'Bahamut', 'Necross'
     ];
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
     let selectedEnemies = null;
@@ -82,7 +82,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Bahamut'
+                    'Necross'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -313,11 +313,11 @@ const setEnemyStats = (type, condition) => {
     }
 
     if (condition == "overlord") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 500;
-        enemy.stats.atk = enemy.stats.atk * 4;
-        enemy.stats.def = enemy.stats.def * 12;
-        enemy.stats.critRate = enemy.stats.critRate * 1.1;
-        enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
+        enemy.stats.hpMax = enemy.stats.hpMax * 3000;
+        enemy.stats.atk = enemy.stats.atk * 20;
+        enemy.stats.def = enemy.stats.def * 20;
+        enemy.stats.critRate = enemy.stats.critRate * 1.3;
+        enemy.stats.critDmg = enemy.stats.critDmg * 1.5;
     }
 
     // Apply stat multipliers for every stat
@@ -614,8 +614,13 @@ const setEnemyImg = () => {
             break;
         case 'Bahamut':
             enemy.image.name = 'bahamut';
-            enemy.image.size = '80%'
-    };
+            enemy.image.size = '80%';
+            break;
+        case 'Necross':
+            enemy.image.name = 'necross';
+            enemy.image.size = '70%';
+            break;
+    }
 }
 
 const enemyLoadStats = () => {

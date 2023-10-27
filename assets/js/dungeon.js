@@ -275,7 +275,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 8);
+                eventRoll = randomizeNum(1, 13);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
@@ -340,6 +340,8 @@ const overlordBossBattle = () => {
     showCombatInfo();
     if (enemy.name == 'Bahamut') {
         startCombat(bgmBattleBahamut);
+    } else if (enemy.name == 'Necross') {
+        startCombat(bgmBattleBoss);
     }
     addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
     addDungeonLog(`An Overlord ${enemy.name} has given you a trial.`);
