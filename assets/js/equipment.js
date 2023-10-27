@@ -107,9 +107,7 @@ const createEquipment = () => {
         const minLvl = maxLvl - (dungeon.settings.enemyLvlGap - 1);
         // Set equipment level with Lv.100 cap
         equipment.lvl = randomizeNum(minLvl, maxLvl);
-        if (equipment.lvl > 100) {
-            equipment.lvl = 100;
-        }
+
         // Set stat scaling and equipment tier Tier 10 cap
         let enemyScaling = dungeon.settings.enemyScaling;
         if (enemyScaling > 2) {
@@ -120,7 +118,7 @@ const createEquipment = () => {
         let hpScaling = (35 * randomizeDecimal(0.5, 1.5)) + ((35 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let crVampScaling = (randomizeDecimal(0.5, 1.5)) + ((randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let crVampScaling = (randomizeDecimal(0.3, 0.6)) + ((randomizeDecimal(0.3, 0.6)) * statMultiplier);
 
         // Set randomized numbers to respective stats and increment sell value
         if (statType === "hp") {
@@ -252,7 +250,7 @@ const createRelic = () => {
     }
 
     const rarityChances = {
-        "Relic": 0.3
+        "Relic": 0.5
     };
 
     const randomNumber = Math.random();
@@ -270,7 +268,7 @@ const createRelic = () => {
     let loopCount;
     switch (relic.rarity) {
         case "Relic":
-            loopCount = 20;
+            loopCount = 30;
             break;
     }
 
@@ -352,7 +350,7 @@ const createRelic = () => {
         }
 
         // Cap maximum stat rolls for equipment rarities
-        if (relic.rarity === "Relic" && loopCount > 21) {
+        if (relic.rarity === "Relic" && loopCount > 31) {
             loopCount--;
         }
 

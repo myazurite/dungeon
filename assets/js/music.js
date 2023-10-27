@@ -18,6 +18,8 @@ let bgmBattleBoss;
 let bgmBattleGuardian;
 let bgmBattleBahamut
 let bgmBattleNecross;
+let bgmBattleKagari;
+let bgmBattleShizuku;
 
 // SFX
 let sfxEncounter;
@@ -70,6 +72,12 @@ const setVolume = () => {
 
     bgmBattleNecross = new Howl({
         src: ['./assets/bgm/battle_necross.webm', './assets/bgm/battle_necross.mp3'],
+        volume: volume.bgm * volume.master,
+        loop: true
+    });
+
+    bgmBattleKagari = new Howl({
+        src: ['./assets/bgm/battle_kagari.webm', './assets/bgm/battle_kagari.mp3'],
         volume: volume.bgm * volume.master,
         loop: true
     });
@@ -155,3 +163,13 @@ document.querySelector("#title-screen").addEventListener("click", function () {
     setVolume();
     sfxOpen.play();
 });
+
+function bgmStop() {
+    bgmBattleMain.stop();
+    bgmBattleGuardian.stop();
+    bgmBattleBahamut.stop();
+    bgmBattleBoss.stop();
+    bgmBattleNecross.stop();
+    bgmBattleKagari.stop();
+    bgmBattleShizuku.stop();
+}

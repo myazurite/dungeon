@@ -45,9 +45,11 @@ const hpValidation = () => {
         addCombatLog(`${enemy.name} dropped <i class="fas fa-coins" style="color: #FFD700;"></i>${nFormatter(enemy.rewards.gold)} gold.`)
         player.gold += enemy.rewards.gold;
         playerLoadStats();
-        if(['Bahamut', 'Necross'].includes(enemy.name)) {
-            createRelicPrint("combat");
-        } else if (enemy.rewards.drop) {
+        if(enemy.rank == 'Overlord') {
+            if(enemy.rewards.drop) {
+                createRelicPrint("combat")
+            }
+        } else if (enemy.rewards.drop && !['Bahamut', 'Necross', 'Sky Striker Ace, Kagari'].includes(enemy.name)) {
             createEquipmentPrint("combat");
         }
 
@@ -300,6 +302,7 @@ const endCombat = () => {
     bgmBattleBahamut.stop();
     bgmBattleBoss.stop();
     bgmBattleNecross.stop();
+    bgmBattleKagari.stop();
     sfxCombatEnd.play();
     player.inCombat = false;
     // Skill validation

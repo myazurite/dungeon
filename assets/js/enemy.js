@@ -2,6 +2,7 @@
 let enemy = {
     name: null,
     type: null,
+    rank: null,
     lvl: null,
     stats: {
         hp: null,
@@ -47,13 +48,16 @@ const generateRandomEnemy = (condition) => {
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
         //Overlord
-        'Bahamut', 'Necross'
+        'Bahamut', 'Necross', 'Sky Striker Ace, Kagari',
     ];
+
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
+    const enemyRanks = ['Mob', 'Guardian', 'Special Boss', 'Overlord'];
     let selectedEnemies = null;
 
     // Generate enemy type
     enemy.type = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+    enemy.rank = enemyRanks[Math.floor(Math.random() * enemyRanks.length)];
 
     // Calculate enemy level
     const maxLvl = dungeon.progress.floor * dungeon.settings.enemyLvlGap + (dungeon.settings.enemyBaseLvl - 1);
@@ -109,7 +113,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Bahamut'
+                    'Sky Striker Ace, Kagari'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -133,7 +137,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Bahamut'
+                    'Sky Striker Ace, Kagari'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -159,7 +163,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Bahamut'
+                    'Sky Striker Ace, Kagari'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -185,7 +189,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Bahamut'
+                    'Sky Striker Ace, Kagari'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -200,12 +204,104 @@ const generateRandomEnemy = (condition) => {
             setEnemyStats(enemy.type, condition);
             break;
     }
+
+    // Select name and apply rank for enemies
+
+    switch (enemy.rank) {
+        case "Guardian":
+            selectedEnemies = enemyNames.filter(name => [
+                //Offensive
+                'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Berthelot, the Undead King',
+                //Defensive
+                'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan',
+                //Balanced
+                'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries',
+                //Quick
+                'Llyrrad, the Ant Queen', 'Clockwork Spider',
+                //Lethal
+                'Aragorn, the Lethal Wolf', 'Cerberus Ptolemaios', 'Hellhound Inferni',
+            ].includes(name));
+            enemy.name = selectedEnemies[Math.floor(Math.random() * selectedEnemies.length)];
+            setEnemyStats(enemy.rank, condition);
+            break;
+        case "Special Boss":
+            selectedEnemies = enemyNames.filter(name => [
+                //Offensive
+                'Behemoth', 'Zalaras, the Dragon Emperor', 'Doge of the East (awakened)',
+                //Defensive
+                'Ulliot, the Deathlord',
+                //Balanced
+                'Ifrit', 'Shiva', 'Thanatos',
+                //Quick
+                'Darkness Angel Reaper', 'Naizicher, the Spider Dragon', 'Doge of the West',
+                //Lethal
+                'Blood Manipulation Feral',
+            ].includes(name));
+            enemy.name = selectedEnemies[Math.floor(Math.random() * selectedEnemies.length)];
+            setEnemyStats(enemy.rank, condition);
+            break;
+        case "Overlord":
+            selectedEnemies = enemyNames.filter(name => [
+                //Offensive
+                'Necross',
+                //Defensive
+
+                //Balanced
+                'Bahamut',
+                //Quick
+                'Sky Striker Ace, Kagari',
+                //Lethal
+
+            ].includes(name));
+            enemy.name = selectedEnemies[Math.floor(Math.random() * selectedEnemies.length)];
+            setEnemyStats(enemy.rank, condition);
+            break;
+        case "Mob":
+            selectedEnemies = enemyNames.filter(name => [
+                //Offensive
+                'Goblin Mage', 'Goblin Archer',
+                'Wolf', 'Black Wolf', 'Winter Wolf',
+                'Knight Slime',
+                'Orc Swordsmaster', 'Orc Axe', 'Orc Archer', 'Orc Mage',
+                'Red Spider',
+                'Skeleton Archer', 'Skeleton Swordsmaster', 'Skeleton Mage', 'Skeleton Pirate', 'Skeleton Samurai',
+                //Defensive
+                'Angel Slime', 'Knight Slime', 'Crusader Slime',
+                'Green Spider',
+                'Skeleton Knight', 'Skeleton Warrior', 'Doge (goon)',
+                //Balanced
+                'Goblin',
+                'Slime', 'Angel Slime', 'Knight Slime',
+                'Orc Swordsmaster', 'Orc Axe', 'Orc Archer', 'Orc Mage',
+                'Spider',
+                'Skeleton Knight', 'Skeleton Warrior',
+                //Quick
+                'Goblin', 'Goblin Rogue', 'Goblin Archer',
+                'Wolf', 'Black Wolf', 'Winter Wolf',
+                'Orc Swordsmaster',
+                'Spider', 'Red Spider', 'Green Spider',
+                'Skeleton Swordsmaster', 'Skeleton Pirate', 'Skeleton Samurai',
+                //Lethal
+                'Goblin Rogue',
+                'Wolf', 'Black Wolf', 'Winter Wolf',
+                'Orc Swordsmaster', 'Orc Axe',
+                'Red Spider',
+                'Skeleton Swordsmaster', 'Skeleton Samurai'
+            ].includes(name));
+            enemy.name = selectedEnemies[Math.floor(Math.random() * selectedEnemies.length)];
+            setEnemyStats(enemy.rank, condition);
+            break;
+    }
+
     if (condition == "chest") {
         enemy.name = "Mimic";
     } else if (condition == "door") {
         enemy.name = "Door Mimic";
     }
     setEnemyImg();
+    console.log(enemy.type)
+    console.log(enemy.rank)
+    console.log(condition)
 }
 
 // Set a randomly generated stat for the enemy
@@ -312,10 +408,11 @@ const setEnemyStats = (type, condition) => {
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
+    // Stat multiplier for overlords
     if (condition == "overlord") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 3000;
-        enemy.stats.atk = enemy.stats.atk * 20;
-        enemy.stats.def = enemy.stats.def * 20;
+        enemy.stats.hpMax = enemy.stats.hpMax * 0.01;
+        enemy.stats.atk = enemy.stats.atk * 0;
+        enemy.stats.def = enemy.stats.def * 0;
         enemy.stats.critRate = enemy.stats.critRate * 1.3;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.5;
     }
@@ -619,6 +716,10 @@ const setEnemyImg = () => {
         case 'Necross':
             enemy.image.name = 'necross';
             enemy.image.size = '70%';
+            break;
+        case 'Sky Striker Ace, Kagari':
+            enemy.image.name = 'kagari';
+            enemy.image.size = '60%';
             break;
     }
 }
