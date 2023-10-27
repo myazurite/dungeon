@@ -289,7 +289,7 @@ const setEnemyStats = (type, condition) => {
     }
 
     // Apply stat multipliers for every stat
-    let floorMultiplier = (dungeon.progress.floor / 4); //old: /3
+    let floorMultiplier = (dungeon.progress.floor / 3.5); //old: /3
     if (floorMultiplier < 1) {
         floorMultiplier = 1;
     }
