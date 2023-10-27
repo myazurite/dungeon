@@ -295,6 +295,7 @@ const startCombat = (battleMusic) => {
 const endCombat = () => {
     bgmBattleMain.stop();
     bgmBattleGuardian.stop();
+    bgmBattleBahamut.stop();
     bgmBattleBoss.stop();
     sfxCombatEnd.play();
     player.inCombat = false;

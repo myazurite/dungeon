@@ -306,6 +306,10 @@ button:focus {
     color: #e30b5c;
 }
 
+.Relic {
+    color: #E00000;
+}
+
 /* Game */
 .game-container {
     display: inline-block;

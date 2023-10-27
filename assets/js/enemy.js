@@ -46,6 +46,8 @@ const generateRandomEnemy = (condition) => {
         'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Cerberus Ptolemaios', 'Hellhound Inferni', 'Berthelot, the Undead King', 'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan', 'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries', 'Llyrrad, the Ant Queen', 'Clockwork Spider', 'Aragorn, the Lethal Wolf',
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
+        //Overlord
+        'Bahamut',
     ];
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
     let selectedEnemies = null;
@@ -60,8 +62,10 @@ const generateRandomEnemy = (condition) => {
         enemy.lvl = minLvl;
     } else if (condition == "sboss") {
         enemy.lvl = maxLvl;
+    } else if (condition == "overlord") {
+        enemy.lvl = maxLvl*1.2
     } else {
-        enemy.lvl = randomizeNum(minLvl, maxLvl);
+        enemy.lvl = randomizeNum(minLvl, maxLvl*0.8);
     }
 
     // Generate proper enemy info
@@ -75,6 +79,10 @@ const generateRandomEnemy = (condition) => {
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Behemoth', 'Zalaras, the Dragon Emperor', 'Doge of the East (awakened)'
+                ].includes(name));
+            } else if (condition == 'overlord') {
+                selectedEnemies = enemyNames.filter(name => [
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -99,6 +107,10 @@ const generateRandomEnemy = (condition) => {
                 selectedEnemies = enemyNames.filter(name => [
                     'Ulliot, the Deathlord',
                 ].includes(name));
+            } else if (condition == 'overlord') {
+                selectedEnemies = enemyNames.filter(name => [
+                    'Bahamut'
+                ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
                     'Angel Slime', 'Knight Slime', 'Crusader Slime',
@@ -118,6 +130,10 @@ const generateRandomEnemy = (condition) => {
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Ifrit', 'Shiva', 'Thanatos'
+                ].includes(name));
+            } else if (condition == 'overlord') {
+                selectedEnemies = enemyNames.filter(name => [
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -141,6 +157,10 @@ const generateRandomEnemy = (condition) => {
                 selectedEnemies = enemyNames.filter(name => [
                     'Darkness Angel Reaper', 'Naizicher, the Spider Dragon', 'Doge of the West'
                 ].includes(name));
+            } else if (condition == 'overlord') {
+                selectedEnemies = enemyNames.filter(name => [
+                    'Bahamut'
+                ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
                     'Goblin', 'Goblin Rogue', 'Goblin Archer',
@@ -162,6 +182,10 @@ const generateRandomEnemy = (condition) => {
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
                     'Blood Manipulation Feral'
+                ].includes(name));
+            } else if (condition == 'overlord') {
+                selectedEnemies = enemyNames.filter(name => [
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -276,16 +300,23 @@ const setEnemyStats = (type, condition) => {
         enemy.stats.atk = enemy.stats.atk * 1.5;
         enemy.stats.def = enemy.stats.def * 1.5;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
-        enemy.stats.critDmg = enemy.stats.critDmg * 1.2;
+        enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
     // Stat multiplier for monarchs
     if (condition == "sboss") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 6;
+        enemy.stats.hpMax = enemy.stats.hpMax * 20;
         enemy.stats.atk = enemy.stats.atk * 2;
         enemy.stats.def = enemy.stats.def * 2;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
-        enemy.stats.critDmg = enemy.stats.critDmg * 1.3;
+        enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
+    }
+
+    if (condition == "overlord") {
+        enemy.stats.hpMax = enemy.stats.hpMax * 60;
+        enemy.stats.atk = enemy.stats.atk * 4;
+        enemy.stats.def = enemy.stats.def * 12;
+        enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
     // Apply stat multipliers for every stat
@@ -321,7 +352,7 @@ const setEnemyStats = (type, condition) => {
     if (enemy.rewards.exp > 130000) {
         enemy.rewards.exp = 130000 * randomizeDecimal(0.9, 1.1);
     }
-    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.9, 1.1)) * 1.2);
+    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.2, 0.4)) * 1.2);
     enemy.rewards.drop = randomizeNum(1, 3);
     if (enemy.rewards.drop == 1) {
         enemy.rewards.drop = true;
@@ -580,6 +611,9 @@ const setEnemyImg = () => {
             enemy.image.name = 'doge_goon';
             enemy.image.size = '70%';
             break;
+        case 'Bahamut':
+            enemy.image.name = 'bahamut';
+            enemy.image.size = '80%'
     };
 }
 

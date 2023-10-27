@@ -16,6 +16,7 @@ let bgmDungeon;
 let bgmBattleMain;
 let bgmBattleBoss;
 let bgmBattleGuardian;
+let bgmBattleBahamut
 
 // SFX
 let sfxEncounter;
@@ -56,6 +57,12 @@ const setVolume = () => {
 
     bgmBattleGuardian = new Howl({
         src: ['./assets/bgm/battle_guardian.webm', './assets/bgm/battle_guardian.mp3'],
+        volume: volume.bgm * volume.master,
+        loop: true
+    });
+
+    bgmBattleBahamut = new Howl({
+        src: ['./assets/bgm/battle_bahamut.webm', './assets/bgm/battle_bahamut.mp3'],
         volume: volume.bgm * volume.master,
         loop: true
     });

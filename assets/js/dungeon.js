@@ -101,7 +101,7 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
-        let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "nothing", "monarch"];
+        let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
         if (dungeon.action > 2 && dungeon.action < 6) {
             eventTypes.push("nextroom");
         } else if (dungeon.action > 5) {
@@ -273,6 +273,26 @@ const dungeonEvent = () => {
                 } else {
                     nothingEvent();
                 }
+                break;
+            case "overlord":
+                eventRoll = randomizeNum(1, 8);
+                if (eventRoll == 1) {
+                    dungeon.status.event = true;
+                    choices = `
+                            <div class="decision-panel">
+                                <button id="choice1">Enter</button>
+                                <button id="choice2">Hell nah, life is beautiful!</button>
+                            </div>`;
+                    addDungeonLog(`<span class="Relic">You found a gate connected to a mysterious dimension and felt chill down to the spine. It is best not to enter.</span>`, choices);
+                    document.querySelector("#choice1").onclick = function () {
+                        overlordBossBattle();
+                    }
+                    document.querySelector("#choice2").onclick = function () {
+                        ignoreEvent();
+                    };
+                } else {
+                    nothingEvent();
+                }
         }
     }
 }
@@ -305,13 +325,24 @@ const guardianBattle = () => {
     addDungeonLog("You moved to the next floor.");
 }
 
-// Guardian boss fight
+// Special boss fight
 const specialBossBattle = () => {
     generateRandomEnemy("sboss");
     showCombatInfo();
     startCombat(bgmBattleBoss);
     addCombatLog(`Dungeon Monarch ${enemy.name} has awoken.`);
     addDungeonLog(`Dungeon Monarch ${enemy.name} has awoken.`);
+}
+
+//Overlord boss fight
+const overlordBossBattle = () => {
+    generateRandomEnemy("overlord");
+    showCombatInfo();
+    if (enemy.name == 'Bahamut') {
+        startCombat(bgmBattleBahamut);
+    }
+    addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
+    addDungeonLog(`An Overlord ${enemy.name} has given you a trial.`);
 }
 
 // Flee from the monster
@@ -356,7 +387,7 @@ const chestEvent = () => {
 // Calculates Gold Drop
 const goldDrop = () => {
     sfxSell.play();
-    let goldValue = randomizeNum(50, 500) * dungeon.progress.floor;
+    let goldValue = randomizeNum(50, 300) * dungeon.progress.floor;
     addDungeonLog(`You found <i class="fas fa-coins" style="color: #FFD700;"></i>${nFormatter(goldValue)}.`);
     player.gold += goldValue;
     playerLoadStats();
