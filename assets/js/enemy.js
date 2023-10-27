@@ -63,9 +63,9 @@ const generateRandomEnemy = (condition) => {
     } else if (condition == "sboss") {
         enemy.lvl = maxLvl;
     } else if (condition == "overlord") {
-        enemy.lvl = maxLvl*1.5
+        enemy.lvl = maxLvl + 30
     } else {
-        enemy.lvl = randomizeNum(minLvl, maxLvl*0.8);
+        enemy.lvl = randomizeNum(minLvl, maxLvl);
     }
 
     // Generate proper enemy info
@@ -350,10 +350,10 @@ const setEnemyStats = (type, condition) => {
 
     let expCalculation = (expYield.reduce((acc, cur) => acc + cur, 0)) / 20;
     enemy.rewards.exp = Math.round(expCalculation + expCalculation * (enemy.lvl * 0.1));
-    if (enemy.rewards.exp > 130000) {
-        enemy.rewards.exp = 130000 * randomizeDecimal(0.9, 1.1);
+    if (enemy.rewards.exp > 100000) {
+        enemy.rewards.exp = 100000 * randomizeDecimal(0.7, 1.1);
     }
-    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.15, 0.35)) * 1.2);
+    enemy.rewards.gold = Math.round((enemy.rewards.exp * randomizeDecimal(0.3, 0.5)) * 1.2);
     enemy.rewards.drop = randomizeNum(1, 3);
     if (enemy.rewards.drop == 1) {
         enemy.rewards.drop = true;

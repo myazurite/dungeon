@@ -102,6 +102,7 @@ const dungeonEvent = () => {
         let choices;
         let eventRoll;
         let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
+        // let eventTypes = ["overlord","overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
         if (dungeon.action > 2 && dungeon.action < 6) {
             eventTypes.push("nextroom");
         } else if (dungeon.action > 5) {
@@ -275,7 +276,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 13);
+                eventRoll = randomizeNum(1, 1);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
@@ -341,7 +342,7 @@ const overlordBossBattle = () => {
     if (enemy.name == 'Bahamut') {
         startCombat(bgmBattleBahamut);
     } else if (enemy.name == 'Necross') {
-        startCombat(bgmBattleBoss);
+        startCombat(bgmBattleNecross);
     }
     addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
     addDungeonLog(`An Overlord ${enemy.name} has given you a trial.`);

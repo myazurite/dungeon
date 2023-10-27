@@ -41,18 +41,8 @@ const createEquipment = () => {
         "Rare": 0.09,
         "Epic": 0.06,
         "Legendary": 0.03,
-        "Heirloom": 0.02
+        "Heirloom": 0.02,
     };
-
-    const shopRarityChances = {
-        "Epic": 0.5,
-        "Legendary": 0.3,
-        "Heirloom": 0.2
-    }
-
-    const overlordDrop = {
-        "Relic": 0.2
-    }
 
     const randomNumber = Math.random();
     let cumulativeChance = 0;
@@ -90,8 +80,8 @@ const createEquipment = () => {
 
     // Generate and append random stats to the stats array
     const physicalStats = ["atk", "atkSpd", "vamp", "critRate", "critDmg"];
-    const damageyStats = ["atk", "atk", "vamp", "critRate", "critDmg", "critDmg"];
-    const speedyStats = ["atkSpd", "atkSpd", "atk", "vamp", "critRate", "critRate", "critDmg"];
+    const damageyStats = ["atk", "atk", "critRate", "critDmg", "critDmg"];
+    const speedyStats = ["atkSpd", "atkSpd", "atk", "critRate", "critRate", "critDmg"];
     const defenseStats = ["hp", "hp", "def", "def", "atk"];
     const dmgDefStats = ["hp", "def", "atk", "atk", "critRate", "critDmg"];
     let statTypes;
@@ -127,20 +117,20 @@ const createEquipment = () => {
         }
         let statMultiplier = (enemyScaling - 1) * equipment.lvl;
         equipment.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (50 * randomizeDecimal(0.5, 1.5)) + ((50 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (35 * randomizeDecimal(0.5, 1.5)) + ((35 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let crVampScaling = (1.5 * randomizeDecimal(0.5, 1.5)) + ((1.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let crVampScaling = (randomizeDecimal(0.5, 1.5)) + ((randomizeDecimal(0.5, 1.5)) * statMultiplier);
 
         // Set randomized numbers to respective stats and increment sell value
         if (statType === "hp") {
-            statValue = randomizeNum(hpScaling * 0.5, hpScaling);
+            statValue = randomizeNum(hpScaling * 0.3, hpScaling);
             equipmentValue += statValue;
         } else if (statType === "atk") {
             statValue = randomizeNum(atkDefScaling * 0.5, atkDefScaling);
             equipmentValue += statValue * 2.5;
         } else if (statType === "def") {
-            statValue = randomizeNum(atkDefScaling * 0.5, atkDefScaling);
+            statValue = randomizeNum(atkDefScaling * 0.3, atkDefScaling);
             equipmentValue += statValue * 2.5;
         } else if (statType === "atkSpd") {
             statValue = randomizeDecimal(cdAtkSpdScaling * 0.5, cdAtkSpdScaling);
@@ -151,15 +141,15 @@ const createEquipment = () => {
             equipmentValue += statValue * 8.33;
         } else if (statType === "vamp") {
             statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
-            if (statValue > 8) {
-                statValue = 8 * randomizeDecimal(0.5, 1);
+            if (statValue > 4) {
+                statValue = 4 * randomizeDecimal(0.5, 1);
                 loopCount++;
             }
             equipmentValue += statValue * 20.83;
         } else if (statType === "critRate") {
-            statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
-            if (statValue > 10) {
-                statValue = 10 * randomizeDecimal(0.5, 1);
+            statValue = randomizeDecimal(crVampScaling * 0.3, crVampScaling);
+            if (statValue > 4) {
+                statValue = 4 * randomizeDecimal(0.3, 1);
                 loopCount++;
             }
             equipmentValue += statValue * 20.83;
@@ -225,6 +215,189 @@ const createEquipment = () => {
     return itemShow;
 }
 
+const createRelic = () => {
+    const relic = {
+        category: null,
+        attribute: null,
+        type: null,
+        rarity: null,
+        lvl: null,
+        tier: null,
+        value: null,
+        stats: [],
+    };
+
+    // Generate random relic attribute
+    const relicAttributes = ["Damage", "Defense"];
+    relic.attribute = relicAttributes[Math.floor(Math.random() * relicAttributes.length)];
+
+    // Generate random relic name and type based on attribute
+    if (relic.attribute === "Damage") {
+        const relicCategories = ["Athena Core", "Purification Core", "Royal Arm", "Zodiac Curtana", "Yoshimitsu"];
+        relic.category = relicCategories[Math.floor(Math.random() * relicCategories.length)];
+        relic.type = "Weapon";
+    } else if (relic.attribute === "Defense") {
+        const relicTypes = ["Module", "Shield", "Trinket"];
+        relic.type = relicTypes[Math.floor(Math.random() * relicTypes.length)];
+        if (relic.type === "Module") {
+            const relicCategories = ["Omega Module",];
+            relic.category = relicCategories[Math.floor(Math.random() * relicCategories.length)];
+        } else if (relic.type === "Shield") {
+            const relicCategories = ["Epsilon Shield",];
+            relic.category = relicCategories[Math.floor(Math.random() * relicCategories.length)];
+        } else if (relic.type === "Trinket") {
+            const relicCategories = ["Alpha Trinket",];
+            relic.category = relicCategories[Math.floor(Math.random() * relicCategories.length)];
+        }
+    }
+
+    const rarityChances = {
+        "Relic": 0.3
+    };
+
+    const randomNumber = Math.random();
+    let cumulativeChance = 0;
+
+    for (let rarity in rarityChances) {
+        cumulativeChance += rarityChances[rarity];
+        if (randomNumber <= cumulativeChance) {
+            relic.rarity = rarity;
+            break;
+        }
+    }
+
+    // Determine number of times to loop based on equipment rarity
+    let loopCount;
+    switch (relic.rarity) {
+        case "Relic":
+            loopCount = 20;
+            break;
+    }
+
+    // Generate and append random stats to the stats array
+    const physicalStats = ["atk", "atkSpd", "vamp", "critRate", "critDmg"];
+    const damageyStats = ["atk", "atk", "critRate", "critDmg", "critDmg"];
+    const speedyStats = ["atkSpd", "atkSpd", "atk", "critRate", "critRate", "critDmg"];
+    const defenseStats = ["hp", "hp", "def", "def", "atk"];
+    const dmgDefStats = ["hp", "def", "atk", "atk", "critRate", "critDmg"];
+    let statTypes;
+    if (relic.attribute === "Damage") {
+        if (relic.category === "Athena Core") {
+            statTypes = damageyStats;
+        } else if (relic.category === "Dagger" || relic.category === "Yoshimitsu") {
+            statTypes = speedyStats;
+        } else if (relic.category === "Purification Core") {
+            statTypes = dmgDefStats;
+        } else {
+            statTypes = physicalStats;
+        }
+    } else if (relic.attribute === "Defense") {
+        statTypes = defenseStats;
+    }
+    let relicValue = 0;
+    for (let i = 0; i < loopCount; i++) {
+        let statType = statTypes[Math.floor(Math.random() * statTypes.length)];
+
+        // Stat scaling for relic
+        const maxLvl = dungeon.progress.floor * dungeon.settings.enemyLvlGap + (dungeon.settings.enemyBaseLvl - 1);
+        const minLvl = maxLvl - (dungeon.settings.enemyLvlGap - 1);
+        // Set relic level with Lv.100 cap
+        relic.lvl = randomizeNum(minLvl, maxLvl);
+        // if (relic.lvl > 100) {
+        //     relic.lvl = 100;
+        // }
+        // Set stat scaling and relic tier 10 cap
+        let enemyScaling = dungeon.settings.enemyScaling;
+        let statMultiplier = (enemyScaling - 1) * relic.lvl;
+        relic.tier = Math.round((enemyScaling - 1) * 10);
+        let hpScaling = (50 * randomizeDecimal(0.5, 1.5)) + ((50 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let crVampScaling = (1.5 * randomizeDecimal(0.5, 1.5)) + ((1.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+
+        // Set randomized numbers to respective stats and increment sell value
+        if (statType === "hp") {
+            statValue = randomizeNum(hpScaling * 0.5, hpScaling);
+            relicValue += statValue;
+        } else if (statType === "atk") {
+            statValue = randomizeNum(atkDefScaling * 0.5, atkDefScaling);
+            relicValue += statValue * 2.5;
+        } else if (statType === "def") {
+            statValue = randomizeNum(atkDefScaling * 0.5, atkDefScaling);
+            relicValue += statValue * 2.5;
+        } else if (statType === "atkSpd") {
+            statValue = randomizeDecimal(cdAtkSpdScaling * 0.5, cdAtkSpdScaling);
+            if (statValue > 15) {
+                statValue = 15 * randomizeDecimal(0.5, 1);
+                loopCount++;
+            }
+            relicValue += statValue * 8.33;
+        } else if (statType === "vamp") {
+            statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
+            if (statValue > 8) {
+                statValue = 8 * randomizeDecimal(0.5, 1);
+                loopCount++;
+            }
+            relicValue += statValue * 20.83;
+        } else if (statType === "critRate") {
+            statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
+            if (statValue > 10) {
+                statValue = 10 * randomizeDecimal(0.5, 1);
+                loopCount++;
+            }
+            relicValue += statValue * 20.83;
+        } else if (statType === "critDmg") {
+            statValue = randomizeDecimal(cdAtkSpdScaling * 0.5, cdAtkSpdScaling);
+            relicValue += statValue * 8.33;
+        }
+
+        // Cap maximum stat rolls for equipment rarities
+        if (relic.rarity === "Relic" && loopCount > 21) {
+            loopCount--;
+        }
+
+        // Check if stat type already exists in stats array
+        let statExists = false;
+        for (let j = 0; j < relic.stats.length; j++) {
+            if (Object.keys(relic.stats[j])[0] == statType) {
+                statExists = true;
+                break;
+            }
+        }
+
+        // If stat type already exists, add values together
+        if (statExists) {
+            for (let j = 0; j < relic.stats.length; j++) {
+                if (Object.keys(relic.stats[j])[0] == statType) {
+                    relic.stats[j][statType] += statValue;
+                    break;
+                }
+            }
+        }
+
+        // If stat type does not exist, add new stat to stats array
+        else {
+            relic.stats.push({ [statType]: statValue });
+        }
+    }
+    relic.value = Math.round(relicValue * 10);
+    player.inventory.equipment.push(JSON.stringify(relic));
+
+    saveData();
+    showInventory();
+    showEquipment();
+
+    const itemShow = {
+        category: relic.category,
+        rarity: relic.rarity,
+        lvl: relic.lvl,
+        tier: relic.tier,
+        icon: relicIcon(relic.category),
+        stats: relic.stats
+    }
+    return itemShow;
+}
+
 const equipmentIcon = (equipment) => {
     if (equipment == "Sword") {
         return '<i class="ra ra-relic-blade"></i>';
@@ -257,8 +430,28 @@ const equipmentIcon = (equipment) => {
     }
 }
 
+const relicIcon = (relic) => {
+    if (relic == "Athena Core") {
+        return '<i class="ra ra-grappling-hook"></i>';
+    } else if (relic == "Purification Core") {
+        return '<i class="ra ra-fireball-sword"></i>';
+    }else if (relic == "Royal Arm") {
+        return '<i class="ra ra-all-for-one"></i>';
+    } else if (relic == "Zodiac Curtana") {
+        return '<i class="ra ra-dripping-sword"></i>';
+    } else if (relic == "Omega Module") {
+        return '<i class="ra ra-site"></i>';
+    } else if (relic == "Alpha Trinket") {
+        return '<i class="ra ra-barrier"></i>';
+    } else if (relic == "Epsilon Shield") {
+        return '<i class="ra ra-eye-shield"></i>';
+    } else if (relic == "Yoshimitsu") {
+        return '<i class="ra ra-daggers"></i>';
+    }
+}
+
 // Show full detail of the item
-const showItemInfo = (item, icon, type, i) => {
+const showItemInfo = (item, icon, relic_icon, type, i) => {
     sfxOpen.play();
 
     dungeon.status.exploring = false;
@@ -272,7 +465,7 @@ const showItemInfo = (item, icon, type, i) => {
     dimContainer.style.filter = "brightness(50%)";
     itemInfo.innerHTML = `
             <div class="content">
-                <h3 class="${item.rarity}">${icon}${item.rarity} ${item.category}</h3>
+                <h3 class="${item.rarity}">${item.rarity !== 'Relic' ? icon : relic_icon}${item.rarity} ${item.category}</h3>
                 <h5 class="lvltier ${item.rarity}"><b>Lv.${item.lvl} Tier ${item.tier}</b></h5>
                 <ul>
                 ${item.stats.map(stat => {
@@ -334,7 +527,7 @@ const showItemInfo = (item, icon, type, i) => {
         defaultModalElement.style.display = "flex";
         defaultModalElement.innerHTML = `
         <div class="content">
-            <p>Sell <span class="${item.rarity}">${icon}${item.rarity} ${item.category}</span>?</p>
+            <p>Sell <span class="${item.rarity}">${item.rarity !== 'Relic' ? icon : relic_icon}${item.rarity} ${item.category}</span>?</p>
             <div class="button-container">
                 <button id="sell-confirm">Sell</button>
                 <button id="sell-cancel">Cancel</button>
@@ -398,11 +591,12 @@ const showInventory = () => {
         // Create an element to display the item's name
         let itemDiv = document.createElement('div');
         let icon = equipmentIcon(item.category);
+        let relic_icon = relicIcon(item.category)
         itemDiv.className = "items";
-        itemDiv.innerHTML = `<p class="${item.rarity}">${icon}${item.rarity} ${item.category}</p>`;
+        itemDiv.innerHTML = `<p class="${item.rarity}">${item.rarity !== 'Relic' ? icon : relic_icon}${item.rarity} ${item.category}</p>`;
         itemDiv.addEventListener('click', function () {
             let type = "Equip";
-            showItemInfo(item, icon, type, i);
+            showItemInfo(item, icon, relic_icon, type, i);
         });
 
         // Add the itemDiv to the inventory container
@@ -427,11 +621,12 @@ const showEquipment = () => {
         // Create an element to display the item's name
         let equipDiv = document.createElement('div');
         let icon = equipmentIcon(item.category);
+        let relic_icon = relicIcon(item.category);
         equipDiv.className = "items";
-        equipDiv.innerHTML = `<button class="${item.rarity}">${icon}</button>`;
+        equipDiv.innerHTML = `<button class="${item.rarity}">${item.rarity !== 'Relic' ? icon : relic_icon}</button>`;
         equipDiv.addEventListener('click', function () {
             let type = "Unequip";
-            showItemInfo(item, icon, type, i);
+            showItemInfo(item, icon, relic_icon, type, i);
         });
 
         // Add the equipDiv to the inventory container
@@ -541,5 +736,29 @@ const createEquipmentPrint = (condition) => {
     } else if (condition == "dungeon") {
         addDungeonLog(`
         You got <span class="${item.rarity}">${item.rarity} ${item.category}</span>.<br>${panel}`);
+    }
+}
+
+const createRelicPrint = (condition) => {
+    let rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    let item = createRelic();
+    let panel = `
+        <div class="primary-panel" style="padding: 0.5rem; margin-top: 0.5rem;">
+                <h4 class="${item.rarity}"><b>${item.icon}${item.rarity} ${item.category}</b></h4>
+                <h5 class="${item.rarity}"><b>Lv.${item.lvl} Tier ${item.tier}</b></h5>
+                <ul>
+                ${item.stats.map(stat => {
+        if (Object.keys(stat)[0] === "critRate" || Object.keys(stat)[0] === "critDmg" || Object.keys(stat)[0] === "atkSpd" || Object.keys(stat)[0] === "vamp") {
+            return `<li>${Object.keys(stat)[0].toString().replace(/([A-Z])/g, ".$1").replace(/crit/g, "c").toUpperCase()}+${stat[Object.keys(stat)[0]].toFixed(2).replace(rx, "$1")}%</li>`;
+        }
+        else {
+            return `<li>${Object.keys(stat)[0].toString().replace(/([A-Z])/g, ".$1").replace(/crit/g, "c").toUpperCase()}+${stat[Object.keys(stat)[0]]}</li>`;
+        }
+    }).join('')}
+            </ul>
+        </div>`;
+    if (condition == "combat") {
+        addCombatLog(`
+        ${enemy.name} dropped <span class="${item.rarity}">${item.rarity} ${item.category}</span>.<br>${panel}`);
     }
 }
