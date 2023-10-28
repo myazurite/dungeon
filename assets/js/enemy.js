@@ -277,7 +277,7 @@ const setEnemyStats = (type, condition) => {
             def: 1,
             atkSpd: 1,
             vamp: 1,
-            critRate: 1,
+            critRate: 0,
             critDmg: 1
         }
     }
@@ -290,7 +290,7 @@ const setEnemyStats = (type, condition) => {
             enemy.stats[stat] = 0.3; //old: 0.4
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
         } else if (["critRate"].includes(stat)) {
-            enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
+            enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl * 0);
         } else if (["critDmg"].includes(stat)) {
             enemy.stats[stat] = 20;
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
@@ -300,8 +300,8 @@ const setEnemyStats = (type, condition) => {
     // Stat multiplier for floor guardians
     if (condition == "guardian") {
         enemy.stats.hpMax = enemy.stats.hpMax * 1.5;
-        enemy.stats.atk = enemy.stats.atk * 1.5;
-        enemy.stats.def = enemy.stats.def * 1.5;
+        enemy.stats.atk = enemy.stats.atk * 2;
+        enemy.stats.def = enemy.stats.def * 3;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
@@ -309,8 +309,8 @@ const setEnemyStats = (type, condition) => {
     // Stat multiplier for monarchs
     if (condition == "sboss") {
         enemy.stats.hpMax = enemy.stats.hpMax * 20;
-        enemy.stats.atk = enemy.stats.atk * 3;
-        enemy.stats.def = enemy.stats.def * 2;
+        enemy.stats.atk = enemy.stats.atk * 4;
+        enemy.stats.def = enemy.stats.def * 6;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }

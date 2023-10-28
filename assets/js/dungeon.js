@@ -101,8 +101,8 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
-        let eventTypes = ["blessing", "curse", "treasure", "enemy", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
-        // let eventTypes = ["overlord","overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
+        let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
+        // let eventTypes = ["shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop"];
         if (dungeon.action > 2 && dungeon.action < 6) {
             eventTypes.push("nextroom");
         } else if (dungeon.action > 5) {
@@ -250,6 +250,47 @@ const dungeonEvent = () => {
                     }
                     document.querySelector("#choice2").onclick = function () {
                         ignoreEvent();
+                    };
+                } else {
+                    nothingEvent();
+                }
+                break;
+            case "shop":
+                let repeat = true;
+                eventRoll = randomizeNum(1, 4);
+                if (eventRoll == 1) {
+                    dungeon.status.event = true;
+                    let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 10);
+                    let cost = curseLvl * (0 * (curseLvl * 0.5) + 0 * (curseLvl * 0.5));
+                    choices = `
+                            <div class="decision-panel">
+                                <button id="choice1">Buy</button>
+                                <button id="choice2">Ignore</button>
+                            </div>`;
+                    addDungeonLog(`<span class="Uncommon">Hello adventurer and welcome to The Town of HoneyWood. Do you want to get today's SUPER DUPER SPECIAL AND MYSTERIOUS wares? Only for <i class="fas fa-coins" style="color: #FFD700;"></i><span class="Common">${nFormatter(cost)}</span></span>`, choices);
+                    document.querySelector("#choice1").onclick = function () {
+                        if (player.gold < cost) {
+                            sfxDeny.play();
+                            addDungeonLog("Sorry, your card declined.");
+                        } else {
+                            player.gold -= cost;
+                            sfxConfirm.play();
+                            eventRoll = randomizeNum(1, 100);
+                            if (eventRoll == 1) {
+                                createRelicReplicaPrint("shop");
+                                addDungeonMessage(`<span class="Heirloom">Congratulation, you hit the jackpot!!!! Now get out.</span>`);
+                            } else {
+                                createEquipmentPrint("dungeon");
+                                // addDungeonLog(`<span class="Uncommon">Oof, tough luck, wanna try again? <i class="fas fa-coins" style="color: #FFD700;"></i><span class="Common">${nFormatter(cost)}</span></span>`, choices);
+                                addDungeonMessage(`<span class="Uncommon">Oof, better luck next time!!</span>`)
+                            }
+                            dungeon.status.event = false;
+                        }
+                    }
+                    document.querySelector("#choice2").onclick = function () {
+                        ignoreEvent();
+                        dungeon.status.event = false;
+                        addDungeonMessage(`<span class="Uncommon">Why so broke? (⊙︿⊙)_/¯</span>`)
                     };
                 } else {
                     nothingEvent();
@@ -536,6 +577,11 @@ const updateDungeonLog = (choices) => {
 const addDungeonLog = (message, choices) => {
     dungeon.backlog.push(message);
     updateDungeonLog(choices);
+}
+
+//Add a log to the dungeon backlog without choices
+const addDungeonMessage = (message) => {
+    dungeon.backlog.push(message);
 }
 
 // Evaluate a dungeon difficulty
