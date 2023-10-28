@@ -101,7 +101,7 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
-        let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
+        let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch", "blesing", "curse", "nothing", "overlord"];
         // let eventTypes = ["shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop"];
         if (dungeon.action > 2 && dungeon.action < 9) {
             eventTypes.push("nextroom");
@@ -226,7 +226,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "curse":
-                eventRoll = randomizeNum(1, 3);
+                eventRoll = randomizeNum(1, 2);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 10);
