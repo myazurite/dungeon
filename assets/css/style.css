@@ -111,6 +111,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url("../background/dungeon_bg_1.jpg") center;
+    background-size: cover;
 }
 
 /* Custom Scrollbar */
@@ -582,6 +584,8 @@ header button i {
 #dungeon-main {
     display: none;
     flex-direction: column;
+    background: url("../background/dungeon_bg_2.jpg") center;
+    background-size: cover;
 }
 
 #dungeon-main h1 {
