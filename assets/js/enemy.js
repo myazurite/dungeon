@@ -287,7 +287,7 @@ const setEnemyStats = (type, condition) => {
         if (["hpMax", "atk", "def"].includes(stat)) {
             enemy.stats[stat] += Math.round(enemy.stats[stat] * ((dungeon.settings.enemyScaling - 1) * enemy.lvl));
         } else if (["atkSpd"].includes(stat)) {
-            enemy.stats[stat] = 0.4; //old: 0.4
+            enemy.stats[stat] = 0.3; //old: 0.4
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
         } else if (["critRate"].includes(stat)) {
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl * 0);
@@ -299,18 +299,18 @@ const setEnemyStats = (type, condition) => {
 
     // Stat multiplier for floor guardians
     if (condition == "guardian") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 7;
-        enemy.stats.atk = enemy.stats.atk * 4;
-        enemy.stats.def = enemy.stats.def * 8;
+        enemy.stats.hpMax = enemy.stats.hpMax * 5;
+        enemy.stats.atk = enemy.stats.atk * 3;
+        enemy.stats.def = enemy.stats.def * 5;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
     // Stat multiplier for monarchs
     if (condition == "sboss") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 50;
-        enemy.stats.atk = enemy.stats.atk * 15;
-        enemy.stats.def = enemy.stats.def * 30;
+        enemy.stats.hpMax = enemy.stats.hpMax * 15;
+        enemy.stats.atk = enemy.stats.atk * 10;
+        enemy.stats.def = enemy.stats.def * 15;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
@@ -325,7 +325,7 @@ const setEnemyStats = (type, condition) => {
     }
 
     // Apply stat multipliers for every stat
-    let floorMultiplier = (dungeon.progress.floor / 3); //old: /3
+    let floorMultiplier = (dungeon.progress.floor / 4); //old: /3
     if (floorMultiplier < 1) {
         floorMultiplier = 1;
     }
