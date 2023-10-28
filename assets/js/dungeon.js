@@ -275,7 +275,7 @@ const dungeonEvent = () => {
                         } else {
                             player.gold -= cost;
                             sfxConfirm.play();
-                            eventRoll = randomizeNum(1, 50);
+                            eventRoll = randomizeNum(1, 35);
                             if (eventRoll == 1) {
                                 createRelicReplicaPrint("shop");
                                 addDungeonMessage(`<span class="Heirloom">Congratulation, you hit the jackpot!!!! Now get out.</span>`);
