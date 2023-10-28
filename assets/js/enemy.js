@@ -315,13 +315,13 @@ const setEnemyStats = (type, condition) => {
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
     }
 
-    // Stat multiplier for overlords
+    //TODO Stat multiplier for overlords
     if (condition == "overlord") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 3000;
-        enemy.stats.atk = enemy.stats.atk * 30;
-        enemy.stats.def = enemy.stats.def * 60;
-        enemy.stats.critRate = enemy.stats.critRate * 1.3;
-        enemy.stats.critDmg = enemy.stats.critDmg * 1.5;
+        enemy.stats.hpMax = enemy.stats.hpMax * 5000; //10000
+        enemy.stats.atk = enemy.stats.atk * 50; //30
+        enemy.stats.def = enemy.stats.def * 100; //60
+        enemy.stats.critRate = enemy.stats.critRate * 1.5;
+        enemy.stats.critDmg = enemy.stats.critDmg * 2;
     }
 
     // Apply stat multipliers for every stat

@@ -102,7 +102,7 @@ const dungeonEvent = () => {
         let choices;
         let eventRoll;
         let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "shop", "nothing", "overlord", "monarch", "blesing", "curse", "nothing", "overlord"];
-        // let eventTypes = ["shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop"];
+        // let eventTypes = ["overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
         if (dungeon.action > 2 && dungeon.action < 9) {
             eventTypes.push("nextroom");
         } else if (dungeon.action > 8) {
@@ -317,7 +317,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 9);
+                eventRoll = randomizeNum(1, 1);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
@@ -518,7 +518,7 @@ const statBlessing = () => {
 // Cursed totem offering
 const cursedTotem = (curseLvl) => {
     sfxBuff.play();
-    dungeon.settings.enemyScaling += 0.1;
+    dungeon.settings.enemyScaling += 0.15;
     addDungeonLog(`The monsters in the dungeon became stronger and the loot quality improved. (Curse Lv.${curseLvl} > Curse Lv.${curseLvl + 1})`);
     saveData();
 }

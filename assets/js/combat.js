@@ -46,9 +46,7 @@ const hpValidation = () => {
         player.gold += enemy.rewards.gold;
         playerLoadStats();
         if(['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
-            if(enemy.rewards.drop) {
                 createRelicPrint("combat")
-            }
         } else if (enemy.rewards.drop && !['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
             createEquipmentPrint("combat");
         }
