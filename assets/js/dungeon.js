@@ -515,11 +515,11 @@ const statBlessing = () => {
     saveData();
 }
 
-// Cursed totem offering
+//TODO Cursed totem offering (adjust curse multiplier)
 const cursedTotem = (curseLvl) => {
     sfxBuff.play();
-    dungeon.settings.enemyScaling += 0.15;
-    addDungeonLog(`The monsters in the dungeon became stronger and the loot quality improved. (Curse Lv.${curseLvl} > Curse Lv.${curseLvl + 1})`);
+    dungeon.settings.enemyScaling += 0.5;
+    addDungeonLog(`The monsters in the dungeon became MUCH MUCH stronger and the loot quality improved. (Curse Lv.${curseLvl} > Curse Lv.${curseLvl + 1})`);
     saveData();
 }
 
