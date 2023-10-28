@@ -626,7 +626,7 @@ const setEnemyImg = () => {
             break;
         case 'Sky Striker Ace, Kagari':
             enemy.image.name = 'kagari';
-            enemy.image.size = '80%';
+            enemy.image.size = '85%';
             break;
         case 'Sky Striker Ace, Shizuku':
             enemy.image.name = 'shizuku';
@@ -634,11 +634,11 @@ const setEnemyImg = () => {
             break;
         case 'Sky Striker Ace, Hayate':
             enemy.image.name = 'hayate';
-            enemy.image.size = '80%';
+            enemy.image.size = '85%';
             break;
         case 'Sky Striker Ace, Kaina':
             enemy.image.name = 'kaina';
-            enemy.image.size = '70%';
+            enemy.image.size = '85%';
             break;
         case 'Ozma':
             enemy.image.name = 'ozma';
