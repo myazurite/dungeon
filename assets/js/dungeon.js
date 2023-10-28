@@ -101,7 +101,7 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
-        let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch", "blesing", "curse", "nothing", "overlord"];
+        let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "shop", "nothing", "overlord", "monarch", "blesing", "curse", "nothing", "overlord"];
         // let eventTypes = ["shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop"];
         if (dungeon.action > 2 && dungeon.action < 9) {
             eventTypes.push("nextroom");
