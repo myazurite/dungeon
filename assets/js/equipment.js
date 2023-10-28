@@ -306,19 +306,18 @@ const createRelicReplica = () => {
         // Stat scaling for relic
         const maxLvl = dungeon.progress.floor * dungeon.settings.enemyLvlGap + (dungeon.settings.enemyBaseLvl - 1);
         const minLvl = maxLvl - (dungeon.settings.enemyLvlGap - 1);
-        // Set relic level with Lv.100 cap
+
+        // Set relic level
         relicReplica.lvl = randomizeNum(minLvl, maxLvl);
-        // if (relic.lvl > 100) {
-        //     relic.lvl = 100;
-        // }
+
         // Set stat scaling and relic tier 10 cap
         let enemyScaling = dungeon.settings.enemyScaling;
         let statMultiplier = (enemyScaling - 1) * relicReplica.lvl;
         relicReplica.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (35 * randomizeDecimal(0.5, 1.5)) + ((35 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let atkDefScaling = (12 * randomizeDecimal(0.5, 1.5)) + ((12 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let cdAtkSpdScaling = (1.5 * randomizeDecimal(0.5, 1.5)) + ((1.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let crVampScaling = (randomizeDecimal(0.5, 1.5)) + ((randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (50 * randomizeDecimal(0.5, 1.5)) + ((50 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let crVampScaling = (1.5 * randomizeDecimal(0.5, 1.5)) + ((1.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
 
         // Set randomized numbers to respective stats and increment sell value
         if (statType === "hp") {
@@ -339,15 +338,15 @@ const createRelicReplica = () => {
             relicReplicaValue += statValue * 8.33;
         } else if (statType === "vamp") {
             statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
-            if (statValue > 6) {
-                statValue = 6 * randomizeDecimal(0.5, 1);
+            if (statValue > 8) {
+                statValue = 8 * randomizeDecimal(0.5, 1);
                 loopCount++;
             }
             relicReplicaValue += statValue * 20.83;
         } else if (statType === "critRate") {
             statValue = randomizeDecimal(crVampScaling * 0.5, crVampScaling);
-            if (statValue > 8) {
-                statValue = 8 * randomizeDecimal(0.5, 1);
+            if (statValue > 10) {
+                statValue = 10 * randomizeDecimal(0.5, 1);
                 loopCount++;
             }
             relicReplicaValue += statValue * 20.83;

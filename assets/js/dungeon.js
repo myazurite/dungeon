@@ -103,9 +103,9 @@ const dungeonEvent = () => {
         let eventRoll;
         let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "nothing", "nothing", "overlord", "monarch"];
         // let eventTypes = ["shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop", "shop"];
-        if (dungeon.action > 2 && dungeon.action < 6) {
+        if (dungeon.action > 2 && dungeon.action < 9) {
             eventTypes.push("nextroom");
-        } else if (dungeon.action > 5) {
+        } else if (dungeon.action > 8) {
             eventTypes = ["nextroom"];
         }
         const event = eventTypes[Math.floor(Math.random() * eventTypes.length)];
@@ -275,7 +275,7 @@ const dungeonEvent = () => {
                         } else {
                             player.gold -= cost;
                             sfxConfirm.play();
-                            eventRoll = randomizeNum(1, 100);
+                            eventRoll = randomizeNum(1, 50);
                             if (eventRoll == 1) {
                                 createRelicReplicaPrint("shop");
                                 addDungeonMessage(`<span class="Heirloom">Congratulation, you hit the jackpot!!!! Now get out.</span>`);
