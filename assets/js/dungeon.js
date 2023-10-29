@@ -227,7 +227,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "curse":
-                eventRoll = randomizeNum(1, 1);
+                eventRoll = randomizeNum(1, 3);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     //TODO Adjust actual curse lvl
