@@ -115,8 +115,8 @@ const createEquipment = () => {
         }
         let statMultiplier = (enemyScaling - 1) * equipment.lvl;
         equipment.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (70 * randomizeDecimal(0.5, 1.5)) + ((70 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let atkDefScaling = (70 * randomizeDecimal(0.5, 1.5)) + ((70 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (35 * randomizeDecimal(0.5, 1.5)) + ((35 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (35 * randomizeDecimal(0.5, 1.5)) + ((35 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let crVampScaling = (randomizeDecimal(0.3, 0.6)) + ((randomizeDecimal(0.3, 0.6)) * statMultiplier);
 
