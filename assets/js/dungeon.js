@@ -227,10 +227,11 @@ const dungeonEvent = () => {
                 }
                 break;
             case "curse":
-                eventRoll = randomizeNum(1, 2);
+                eventRoll = randomizeNum(1, 1);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
-                    let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 10);
+                    //TODO Adjust actual curse lvl
+                    let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 2);
                     let cost = curseLvl * (10000 * (curseLvl * 0.5)) + 5000;
                     choices = `
                             <div class="decision-panel">
@@ -317,6 +318,7 @@ const dungeonEvent = () => {
                     nothingEvent();
                 }
                 break;
+            //TODO overlord chance
             case "overlord":
                 eventRoll = randomizeNum(1, 10);
                 if (eventRoll == 1) {

@@ -305,12 +305,12 @@ const createRelicReplica = () => {
         // Set relic level
         relicReplica.lvl = randomizeNum(minLvl, maxLvl);
 
-        // Set stat scaling and relic tier 10 cap
+        //TODO Set stat scaling and relic replica tier 10 cap
         let enemyScaling = dungeon.settings.enemyScaling;
         let statMultiplier = (enemyScaling - 1) * relicReplica.lvl;
         relicReplica.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (50 * randomizeDecimal(0.5, 1.5)) + ((50 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let atkDefScaling = (20 * randomizeDecimal(0.5, 1.5)) + ((20 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (150 * randomizeDecimal(0.5, 1.5)) + ((150 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (70 * randomizeDecimal(0.5, 1.5)) + ((70 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let cdAtkSpdScaling = (3 * randomizeDecimal(0.5, 1.5)) + ((3 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let crVampScaling = (1.5 * randomizeDecimal(0.5, 1.5)) + ((1.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
 
@@ -487,14 +487,14 @@ const createRelic = () => {
         // if (relic.lvl > 100) {
         //     relic.lvl = 100;
         // }
-        // Set stat scaling and relic tier 10 cap
+        //TODO Set stat scaling and relic tier 10 cap
         let enemyScaling = dungeon.settings.enemyScaling;
         let statMultiplier = (enemyScaling - 1) * relic.lvl;
         relic.tier = Math.round((enemyScaling - 1) * 10);
-        let hpScaling = (100 * randomizeDecimal(0.5, 1.5)) + ((100 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let atkDefScaling = (100 * randomizeDecimal(0.5, 1.5)) + ((100 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let hpScaling = (150 * randomizeDecimal(0.5, 1.5)) + ((150 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let atkDefScaling = (70 * randomizeDecimal(0.5, 1.5)) + ((70 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
         let cdAtkSpdScaling = (3.5 * randomizeDecimal(0.5, 1.5)) + ((3.5 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
-        let crVampScaling = (2 * randomizeDecimal(0.5, 1.5)) + ((2 * randomizeDecimal(0.5, 1.5)) * statMultiplier);
+        let crVampScaling = (randomizeDecimal(0.5, 1.5)) + ((randomizeDecimal(0.5, 1.5)) * statMultiplier);
 
         // Set randomized numbers to respective stats and increment sell value
         if (statType === "hp") {
