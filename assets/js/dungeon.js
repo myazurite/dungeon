@@ -101,6 +101,7 @@ const dungeonEvent = () => {
         dungeon.action++;
         let choices;
         let eventRoll;
+        //TODO: DGN events
         let eventTypes = ["blessing", "curse", "treasure", "enemy", "shop", "enemy", "nothing", "shop", "nothing", "overlord", "monarch", "blesing", "curse", "nothing", "overlord"];
         // let eventTypes = ["overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord", "overlord"];
         if (dungeon.action > 2 && dungeon.action < 9) {
@@ -317,7 +318,7 @@ const dungeonEvent = () => {
                 }
                 break;
             case "overlord":
-                eventRoll = randomizeNum(1, 1);
+                eventRoll = randomizeNum(1, 10);
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     choices = `
