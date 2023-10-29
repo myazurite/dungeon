@@ -215,11 +215,25 @@ window.addEventListener("load", function () {
             newName.style.display = 'unset';
             newNameButton.style.display = 'unset';
         }
-        newNameButton.onclick = function () {
-            player.name = newName.value;
-            alert('Success');
+        newNameButton.onclick = function (e) {
+            e.preventDefault();
+            // player.name = newName.value;
             newName.style.display = 'none';
             newNameButton.style.display = 'none';
+            let newPlayerName = newName.value;
+            let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (format.test(newPlayerName)) {
+                alert("Your name cannot contain special characters!");
+            } else {
+                if (newPlayerName.length < 3 || newPlayerName.length > 15) {
+                    alert("Name should be between 3-15 characters!");
+                } else {
+                    player.name = newPlayerName;
+                    console.log(player.name);
+                    alert('Success!')
+                    location.reload();
+                }
+            }
         }
 
         // Dungeon run click function
