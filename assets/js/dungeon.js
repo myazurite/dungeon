@@ -109,6 +109,7 @@ const dungeonEvent = () => {
         } else if (dungeon.action > 8) {
             eventTypes = ["nextroom"];
         }
+
         const event = eventTypes[Math.floor(Math.random() * eventTypes.length)];
 
         switch (event) {
