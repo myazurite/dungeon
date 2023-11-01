@@ -232,7 +232,7 @@ const dungeonEvent = () => {
                 if (eventRoll == 1) {
                     dungeon.status.event = true;
                     //TODO Adjust actual curse lvl
-                    let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 2);
+                    let curseLvl = Math.round((dungeon.settings.enemyScaling - 1) * 10);
                     let cost = curseLvl * (10000 * (curseLvl * 0.5)) + 5000;
                     choices = `
                             <div class="decision-panel">
@@ -522,7 +522,7 @@ const statBlessing = () => {
 //TODO Cursed totem offering (adjust curse multiplier)
 const cursedTotem = (curseLvl) => {
     sfxBuff.play();
-    dungeon.settings.enemyScaling += 0.5;
+    dungeon.settings.enemyScaling += 0.1;
     addDungeonLog(`The monsters in the dungeon became MUCH MUCH stronger and the loot quality improved. (Curse Lv.${curseLvl} > Curse Lv.${curseLvl + 1})`);
     saveData();
 }
