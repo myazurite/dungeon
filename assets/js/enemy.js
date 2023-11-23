@@ -41,13 +41,13 @@ const generateRandomEnemy = (condition) => {
         // Skeleton
         'Skeleton Archer', 'Skeleton Swordsmaster', 'Skeleton Knight', 'Skeleton Mage', 'Skeleton Pirate', 'Skeleton Samurai', 'Skeleton Warrior',
         //TODO Add Special event unit names here
-        'Doge of the West', 'Doge (goon)', 'Doge of the East (awakened)', 'Ozma',
+        'Doge of the West', 'Doge (goon)', 'Cheems of the East (awakened)', 'Ozma',
         // Bosses
         'Zaart, the Dominator Goblin', 'Banshee, Skeleton Lord', 'Molten Spider', 'Cerberus Ptolemaios', 'Hellhound Inferni', 'Berthelot, the Undead King', 'Slime King', 'Zodiac Cancer', 'Alfadriel, the Light Titan', 'Tiamat, the Dragon Knight', 'Nameless Fallen King', 'Zodiac Aries', 'Llyrrad, the Ant Queen', 'Clockwork Spider', 'Aragorn, the Lethal Wolf',
         // Monarch
         'Naizicher, the Spider Dragon', 'Ulliot, the Deathlord', 'Ifrit', 'Shiva', 'Behemoth', 'Blood Manipulation Feral', 'Thanatos', 'Darkness Angel Reaper', 'Zalaras, the Dragon Emperor',
         //Overlord
-        'Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate', 'Sky Striker Ace, Kaina',
+        'Bahamut', 'Necross',
     ];
 
     const enemyTypes = ['Offensive', 'Defensive', 'Balanced', 'Quick', 'Lethal'];
@@ -80,7 +80,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Behemoth', 'Zalaras, the Dragon Emperor', 'Doge of the East (awakened)'
+                    'Behemoth', 'Zalaras, the Dragon Emperor', 'Cheems of the East (awakened)'
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
@@ -161,7 +161,8 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Sky Striker Ace, Kagari'
+                    // 'Sky Striker Ace, Kagari'
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -211,14 +212,14 @@ const generateRandomEnemy = (condition) => {
     setEnemyImg();
 }
 
-// Set a randomly generated stat for the enemy
+//TODO Set a randomly generated stat for the enemy
 const setEnemyStats = (type, condition) => {
     if (type == "Offensive") {
         enemy.stats = {
             hp: 0,
             hpMax: randomizeNum(300, 370),
             atk: randomizeNum(70, 100),
-            def: randomizeNum(20, 50),
+            def: randomizeNum(30, 50),
             atkSpd: randomizeDecimal(0.2, 0.4),
             vamp: 0,
             critRate: randomizeDecimal(1, 4),
@@ -277,7 +278,7 @@ const setEnemyStats = (type, condition) => {
             def: 1,
             atkSpd: 1,
             vamp: 1,
-            critRate: 0,
+            critRate: 1,
             critDmg: 1
         }
     }
@@ -290,7 +291,7 @@ const setEnemyStats = (type, condition) => {
             enemy.stats[stat] = 0.3; //old: 0.4
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
         } else if (["critRate"].includes(stat)) {
-            enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl * 0);
+            enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl * 0.5);
         } else if (["critDmg"].includes(stat)) {
             enemy.stats[stat] = 20;
             enemy.stats[stat] += enemy.stats[stat] * (((dungeon.settings.enemyScaling - 1) / 4) * enemy.lvl);
@@ -299,8 +300,8 @@ const setEnemyStats = (type, condition) => {
 
     // Stat multiplier for floor guardians
     if (condition == "guardian") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 5;
-        enemy.stats.atk = enemy.stats.atk * 3;
+        enemy.stats.hpMax = enemy.stats.hpMax * 7;
+        enemy.stats.atk = enemy.stats.atk * 5;
         enemy.stats.def = enemy.stats.def * 5;
         enemy.stats.critRate = enemy.stats.critRate * 1.1;
         enemy.stats.critDmg = enemy.stats.critDmg * 1.1;
@@ -317,9 +318,9 @@ const setEnemyStats = (type, condition) => {
 
     //TODO Stat multiplier for overlords
     if (condition == "overlord") {
-        enemy.stats.hpMax = enemy.stats.hpMax * 3000; //10000
+        enemy.stats.hpMax = enemy.stats.hpMax * 500; //10000
         enemy.stats.atk = enemy.stats.atk * 50; //30
-        enemy.stats.def = enemy.stats.def * 300; //60
+        enemy.stats.def = enemy.stats.def * 100; //60
         enemy.stats.critRate = enemy.stats.critRate * 1.5;
         enemy.stats.critDmg = enemy.stats.critDmg * 2;
     }
@@ -608,7 +609,7 @@ const setEnemyImg = () => {
             enemy.image.name = 'doge_gun';
             enemy.image.size = '60%';
             break;
-        case 'Doge of the East (awakened)':
+        case 'Cheems of the East (awakened)':
             enemy.image.name = 'doge_katana';
             enemy.image.size = '70%';
             break;
@@ -623,22 +624,6 @@ const setEnemyImg = () => {
         case 'Necross':
             enemy.image.name = 'necross';
             enemy.image.size = '70%';
-            break;
-        case 'Sky Striker Ace, Kagari':
-            enemy.image.name = 'kagari';
-            enemy.image.size = '85%';
-            break;
-        case 'Sky Striker Ace, Shizuku':
-            enemy.image.name = 'shizuku';
-            enemy.image.size = '80%';
-            break;
-        case 'Sky Striker Ace, Hayate':
-            enemy.image.name = 'hayate';
-            enemy.image.size = '85%';
-            break;
-        case 'Sky Striker Ace, Kaina':
-            enemy.image.name = 'kaina';
-            enemy.image.size = '85%';
             break;
         case 'Ozma':
             enemy.image.name = 'ozma';

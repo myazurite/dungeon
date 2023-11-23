@@ -234,6 +234,11 @@ main {
     cursor: pointer;
 }
 
+.items img {
+    width: 16px;
+    height: 16px;
+}
+
 #menuModal content {
     background-color: red;
 }

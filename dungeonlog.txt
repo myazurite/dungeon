@@ -1,0 +1,30 @@
+const nothingEvent = () => {
+    let eventRoll = randomizeNum(1, 13);
+    if (eventRoll == 1) {
+        addDungeonLog("You stumbled upon a weird scripture, just to realize it was Kyuu's horrible puns.");
+    } else if (eventRoll == 2) {
+        addDungeonLog("You found an empty chest, but not as empty as Luna's forehead.");
+    } else if (eventRoll == 3) {
+        addDungeonLog("You slipped, what an idiot.");
+    } else if (eventRoll == 4) {
+        addDungeonLog("You found a corpse, a horrible(?) death by snu-snu.");
+    } else if (eventRoll == 5) {
+        addDungeonLog("Why did the tomato turn red? Because it saw the salad dressing. -Keishi-");
+    } else if (eventRoll == 6) {
+        addDungeonLog("3 tomatoes are walking down a street - a poppa 🍅 , a momma 🍅  and a baby 🍅 . baby 🍅 starts lagging behind. Poppa 🍅 gets angry, goes over to the baby 🍅 and smooshes him, says  \"catch up\"");
+    } else if (eventRoll == 7) {
+        addDungeonLog("Please be patient, I have autism®");
+    } else if (eventRoll == 8) {
+        addDungeonLog("Why did the scarecrow win an award? Because he was outstanding in his field. -Keishi-(again)");
+    } else if (eventRoll == 9) {
+        addDungeonLog("\"You slipped again, YOU DONKEY.\" -Dumbledore said calmly.")
+    } else if (eventRoll == 10) {
+        addDungeonLog("What's a skeleton favorite instrument? Definitely not a trombone, don't be stupid like Kyuu.")
+    } else if (eventRoll == 11) {
+        addDungeonLog("Hey guys, did you know that in terms of...")
+    } else if (eventRoll == 12) {
+        addDungeonLog("You stumbled upon another weird yet familiar scripture, feeling disgusted you burn it with fire.")
+    } else if (eventRoll == 13) {
+        addDungeonLog("三 ᕕ( ᐛ ) ᕗ")
+    }
+}

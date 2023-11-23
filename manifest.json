@@ -1,4 +1,5 @@
 {
+  "manifest_version": 3,
   "name": "Coffee's Dungeon",
   "short_name": "Coffee's Dungeon",
   "description": "A Smol Web Game",

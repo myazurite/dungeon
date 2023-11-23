@@ -281,11 +281,11 @@ const dungeonEvent = () => {
                             eventRoll = randomizeNum(1, 25);
                             if (eventRoll == 1) {
                                 createRelicReplicaPrint("shop");
-                                addDungeonMessage(`<span class="Heirloom">Congratulation, you hit the jackpot!!!! Now get out.</span>`);
+                                addDungeonLog(`<span class="Heirloom">Congratulation, you hit the jackpot!!!! Now get out.</span>`);
                             } else {
                                 createEquipmentPrint("dungeon");
                                 // addDungeonLog(`<span class="Uncommon">Oof, tough luck, wanna try again? <i class="fas fa-coins" style="color: #FFD700;"></i><span class="Common">${nFormatter(cost)}</span></span>`, choices);
-                                addDungeonMessage(`<span class="Uncommon">Oof, better luck next time!!</span>`)
+                                addDungeonLog(`<span class="Uncommon">Oof, better luck next time!!</span>`)
                             }
                             dungeon.status.event = false;
                         }
@@ -293,7 +293,7 @@ const dungeonEvent = () => {
                     document.querySelector("#choice2").onclick = function () {
                         ignoreEvent();
                         dungeon.status.event = false;
-                        addDungeonMessage(`<span class="Uncommon">Why so broke? (⊙︿⊙)_/¯</span>`)
+                        addDungeonLog(`<span class="Uncommon">Why so broke? (⊙︿⊙)_/¯</span>`)
                     };
                 } else {
                     nothingEvent();
@@ -388,11 +388,12 @@ const overlordBossBattle = () => {
         startCombat(bgmBattleBahamut);
     } else if (enemy.name == 'Necross') {
         startCombat(bgmBattleNecross);
-    } else if (enemy.name == 'Sky Striker Ace, Kagari') {
-        startCombat(bgmBattleKagari);
-    } else if (['Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
-        startCombat(bgmBattleShizuku);
     }
+    // } else if (enemy.name == 'Sky Striker Ace, Kagari') {
+    //     startCombat(bgmBattleKagari);
+    // } else if (['Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
+    //     startCombat(bgmBattleShizuku);
+    // }
     addCombatLog(`An Overlord ${enemy.name} has given you a trial.`);
     addDungeonLog(`An Overlord ${enemy.name} has given you a trial.`);
 }
@@ -447,32 +448,10 @@ const goldDrop = () => {
 
 // Non choices dungeon event messages
 const nothingEvent = () => {
-    let eventRoll = randomizeNum(1, 13);
+    let eventRoll = randomizeNum(1, 2);
     if (eventRoll == 1) {
-        addDungeonLog("You stumbled upon a weird scripture, just to realize it was Kyuu's horrible puns.");
+        addDungeonLog("nothing event");
     } else if (eventRoll == 2) {
-        addDungeonLog("You found an empty chest, but not as empty as Luna's forehead.");
-    } else if (eventRoll == 3) {
-        addDungeonLog("You slipped, what an idiot.");
-    } else if (eventRoll == 4) {
-        addDungeonLog("You found a corpse, a horrible(?) death by snu-snu.");
-    } else if (eventRoll == 5) {
-        addDungeonLog("Why did the tomato turn red? Because it saw the salad dressing. -Keishi-");
-    } else if (eventRoll == 6) {
-        addDungeonLog("3 tomatoes are walking down a street - a poppa 🍅 , a momma 🍅  and a baby 🍅 . baby 🍅 starts lagging behind. Poppa 🍅 gets angry, goes over to the baby 🍅 and smooshes him, says  \"catch up\"");
-    } else if (eventRoll == 7) {
-        addDungeonLog("Please be patient, I have autism®");
-    } else if (eventRoll == 8) {
-        addDungeonLog("Why did the scarecrow win an award? Because he was outstanding in his field. -Keishi-(again)");
-    } else if (eventRoll == 9) {
-        addDungeonLog("\"You slipped again, YOU DONKEY.\" -Dumbledore said calmly.")
-    } else if (eventRoll == 10) {
-        addDungeonLog("What's a skeleton favorite instrument? Definitely not a trombone, don't be stupid like Kyuu.")
-    } else if (eventRoll == 11) {
-        addDungeonLog("Hey guys, did you know that in terms of...")
-    } else if (eventRoll == 12) {
-        addDungeonLog("You stumbled upon another weird yet familiar scripture, feeling disgusted you burn it with fire.")
-    } else if (eventRoll == 13) {
         addDungeonLog("三 ᕕ( ᐛ ) ᕗ")
     }
 }
@@ -584,9 +563,9 @@ const addDungeonLog = (message, choices) => {
 }
 
 //Add a log to the dungeon backlog without choices
-const addDungeonMessage = (message) => {
-    dungeon.backlog.push(message);
-}
+// const addDungeonMessage = (message) => {
+//     dungeon.backlog.push(message);
+// }
 
 // Evaluate a dungeon difficulty
 const evaluateDungeon = () => {

@@ -45,14 +45,14 @@ const hpValidation = () => {
         addCombatLog(`${enemy.name} dropped <i class="fas fa-coins" style="color: #FFD700;"></i>${nFormatter(enemy.rewards.gold)} gold.`)
         player.gold += enemy.rewards.gold;
         playerLoadStats();
-        if(['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
+        if(['Bahamut', 'Necross',].includes(enemy.name)) {
                 createRelicPrint("combat")
-        } else if (enemy.rewards.drop && !['Bahamut', 'Necross', 'Sky Striker Ace, Kagari', 'Sky Striker Ace, Shizuku', 'Sky Striker Ace, Hayate'].includes(enemy.name)) {
+        } else if (enemy.rewards.drop && !['Bahamut', 'Necross',].includes(enemy.name)) {
             createEquipmentPrint("combat");
         }
 
         // Recover 20% of players health
-        player.stats.hp += Math.round((player.stats.hpMax * 20) / 100);
+        player.stats.hp += Math.round((player.stats.hpMax * 40) / 100); //20%
         playerLoadStats();
 
         // Close the battle panel
@@ -99,7 +99,7 @@ const playerAttack = () => {
         damage = Math.round(damage);
     }
 
-    // Skill effects
+    //TODO Skill effects
     objectValidation();
     if (player.skills.includes("Remnant Razor")) {
         // Attacks deal extra 15% of enemies' current health on hit || old: 8
@@ -196,7 +196,7 @@ const enemyAttack = () => {
         damage = Math.round(damage);
     }
 
-    // Skill effects
+    //TODO Skill effects
     if (player.skills.includes("Paladin's Heart")) {
         // You receive 30% less damage || old: 25%
         damage = Math.round(damage - ((30 * damage) / 100));
@@ -209,6 +209,13 @@ const enemyAttack = () => {
     if (player.skills.includes("Aegis Thorns")) {
         // Enemies receive 150% of the damage they dealt || old: 15%
         enemy.stats.hp -= Math.round((150 * damage) / 100);
+    }
+    if (player.skills.includes("Test Skill")) {
+        //TODO Skill in development: Immortal
+        if (player.stats.hp < 1) {
+            addCombatLog("Immortal skill activated")
+            player.stats.hp = 1;
+        }
     }
     enemy.stats.hp += lifesteal;
     addCombatLog(`${enemy.name} dealt ` + nFormatter(damage) + ` ${dmgtype} to ${player.name}.`);
