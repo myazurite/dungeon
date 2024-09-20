@@ -107,11 +107,11 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == "sboss") {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Ulliot, the Deathlord', 'Ozma', 'Sky Striker Ace, Kaina'
+                    'Ulliot, the Deathlord', 'Ozma',
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Sky Striker Ace, Shizuku'
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
@@ -188,7 +188,7 @@ const generateRandomEnemy = (condition) => {
                 ].includes(name));
             } else if (condition == 'overlord') {
                 selectedEnemies = enemyNames.filter(name => [
-                    'Sky Striker Ace, Hayate'
+                    'Bahamut'
                 ].includes(name));
             } else {
                 selectedEnemies = enemyNames.filter(name => [
