@@ -662,7 +662,6 @@ const allocationPopup = () => {
                     <option value="Blade Dance">Blade Dance</option>
                     <option value="Paladin's Heart">Paladin's Heart</option>
                     <option value="Aegis Thorns">Aegis Thorns</option>
-                    <option value="Test Skill">Test Skill</option>
                 </select>
             </div>
             <div class="row primary-panel pad">
@@ -761,9 +760,9 @@ const allocationPopup = () => {
         if (selectSkill.value == "Aegis Thorns") {
             skillDesc.innerHTML = "Enemies receive 150% of the damage they dealt.";
         }
-        if (selectSkill.value == "Test Skill") {
-            skillDesc.innerHTML = "Skill in development";
-        }
+        // if (selectSkill.value == "Test Skill") {
+        //     skillDesc.innerHTML = "Skill in development";
+        // }
     }
 
     // Operation Buttons
@@ -807,9 +806,9 @@ const allocationPopup = () => {
         if (selectSkill.value == "Aegis Thorns") {
             player.skills.push("Aegis Thorns");
         }
-        if (selectSkill.value == "Test Skill") {
-            player.skills.push("Test Skill");
-        }
+        // if (selectSkill.value == "Test Skill") {
+        //     player.skills.push("Test Skill");
+        // }
 
         // Proceed to dungeon
         player.allocated = true;

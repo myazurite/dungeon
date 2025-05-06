@@ -210,13 +210,13 @@ const enemyAttack = () => {
         // Enemies receive 150% of the damage they dealt || old: 15%
         enemy.stats.hp -= Math.round((150 * damage) / 100);
     }
-    if (player.skills.includes("Test Skill")) {
-        //TODO Skill in development: Immortal
-        if (player.stats.hp < 1) {
-            addCombatLog("Immortal skill activated")
-            player.stats.hp = 1;
-        }
-    }
+    // if (player.skills.includes("Test Skill")) {
+    //     //TODO Skill in development: Immortal
+    //     if (player.stats.hp < 1) {
+    //         addCombatLog("Immortal skill activated")
+    //         player.stats.hp = 1;
+    //     }
+    // }
     enemy.stats.hp += lifesteal;
     addCombatLog(`${enemy.name} dealt ` + nFormatter(damage) + ` ${dmgtype} to ${player.name}.`);
     hpValidation();

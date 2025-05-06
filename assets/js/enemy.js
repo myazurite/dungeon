@@ -217,20 +217,22 @@ const setEnemyStats = (type, condition) => {
     if (type == "Offensive") {
         enemy.stats = {
             hp: 0,
-            hpMax: randomizeNum(300, 370),
-            atk: randomizeNum(70, 100),
-            def: randomizeNum(30, 50),
+            hpMax: randomizeNum(200, 250),
+            atk: randomizeNum(45, 65),
+            def: randomizeNum(20, 30),
             atkSpd: randomizeDecimal(0.2, 0.4),
             vamp: 0,
-            critRate: randomizeDecimal(1, 4),
-            critDmg: randomizeDecimal(6.5, 7.5)
+            // critRate: randomizeDecimal(1, 4),
+            // critDmg: randomizeDecimal(6.5, 7.5)
+            critRate: 0,
+            critDmg: 0
         };
     } else if (type == "Defensive") {
         enemy.stats = {
             hp: 0,
-            hpMax: randomizeNum(400, 500),
-            atk: randomizeNum(40, 70),
-            def: randomizeNum(40, 70),
+            hpMax: randomizeNum(300, 400),
+            atk: randomizeNum(30, 40),
+            def: randomizeNum(40, 60),
             atkSpd: randomizeDecimal(0.1, 0.3),
             vamp: 0,
             critRate: 0,
@@ -239,35 +241,41 @@ const setEnemyStats = (type, condition) => {
     } else if (type == "Balanced") {
         enemy.stats = {
             hp: 0,
-            hpMax: randomizeNum(320, 420),
-            atk: randomizeNum(50, 80),
-            def: randomizeNum(30, 60),
+            hpMax: randomizeNum(250, 350),
+            atk: randomizeNum(45, 75),
+            def: randomizeNum(45, 75),
             atkSpd: randomizeDecimal(0.15, 0.35),
             vamp: 0,
-            critRate: randomizeDecimal(0.5, 1.5),
-            critDmg: randomizeDecimal(1, 3)
+            // critRate: randomizeDecimal(0.5, 1.5),
+            // critDmg: randomizeDecimal(1, 3)
+            critRate: 0,
+            critDmg: 0
         };
     } else if (type == "Quick") {
         enemy.stats = {
             hp: 0,
-            hpMax: randomizeNum(300, 370),
-            atk: randomizeNum(50, 80),
-            def: randomizeNum(30, 60),
+            hpMax: randomizeNum(200, 250),
+            atk: randomizeNum(25, 50),
+            def: randomizeNum(20, 30),
             atkSpd: randomizeDecimal(0.35, 0.45),
             vamp: 0,
-            critRate: randomizeDecimal(1, 4),
-            critDmg: randomizeDecimal(3, 6)
+            // critRate: randomizeDecimal(1, 4),
+            // critDmg: randomizeDecimal(3, 6)
+            critRate: 0,
+            critDmg: 0
         };
     } else if (type == "Lethal") {
         enemy.stats = {
             hp: 0,
-            hpMax: randomizeNum(300, 370),
+            hpMax: randomizeNum(100, 200),
             atk: randomizeNum(70, 100),
-            def: randomizeNum(20, 50),
+            def: randomizeNum(15, 30),
             atkSpd: randomizeDecimal(0.15, 0.35),
             vamp: 0,
-            critRate: randomizeDecimal(4, 8),
-            critDmg: randomizeDecimal(6, 9)
+            // critRate: randomizeDecimal(4, 8),
+            // critDmg: randomizeDecimal(6, 9)
+            critRate: 0,
+            critDmg: 0
         };
     }
 
